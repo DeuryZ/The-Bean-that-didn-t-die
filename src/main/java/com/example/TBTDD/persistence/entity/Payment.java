@@ -3,12 +3,13 @@ package com.example.TBTDD.persistence.entity;
 import jakarta.persistence.*;
 import java.time.*;
 
-@Entity(name = "pago")
-public class Pago {
+@Entity
+@Table(name = "pago")
+public class Payment {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "codigo_cliente", nullable = false)
-    private Cliente clientId;
+    private Client clientId;
 
     @Column(name="forma_pago", length = 40)
     private String paymentMethod;
@@ -24,10 +25,10 @@ public class Pago {
     @Column(name="total", precision = 15, scale = 2)
     private double total;
 
-    public Pago() {
+    public Payment() {
     }
 
-    public Pago(Cliente clientId, String paymentMethod, String transactionId, LocalDate date, double total) {
+    public Payment(Client clientId, String paymentMethod, String transactionId, LocalDate date, double total) {
         this.clientId = clientId;
         this.paymentMethod = paymentMethod;
         this.transactionId = transactionId;
@@ -35,11 +36,11 @@ public class Pago {
         this.total = total;
     }
 
-    public Cliente getClientId() {
+    public Client getClientId() {
         return clientId;
     }
 
-    public void setClientId(Cliente clientId) {
+    public void setClientId(Client clientId) {
         this.clientId = clientId;
     }
 
