@@ -13,8 +13,10 @@ private String productCode;
 
 @Column(name="nombre" , length=70)
 private String name;
-@Column (name ="gama", length =50)
-private String range;
+@ManyToOne(fetch = FetchType.EAGER)
+@JoinColumn (name = "gama")
+private RangeProduct rangeProduct;
+
 @Column (name="dimensiones", length = 25, nullable = true)
 private String dimensions;
 @Column (name= "proveedor", length = 50, nullable = true)
@@ -28,10 +30,10 @@ private  double salePrice;
 @Column (name="precio_proveedor", precision=15, scale=2, nullable = true)
 private double supplierPrice;
 
-    public Product(String productCode, String name, String range, String dimensions, String supplier, String description, short quantityInStock, double salePrice, double supplierPrice) {
+    public Product(String productCode, String name, RangeProduct rangeProduct, String dimensions, String supplier, String description, short quantityInStock, double salePrice, double supplierPrice) {
         this.productCode = productCode;
         this.name = name;
-        this.range = range;
+        this.rangeProduct = rangeProduct;
         this.dimensions = dimensions;
         this.supplier = supplier;
         this.description = description;
@@ -56,12 +58,12 @@ private double supplierPrice;
         this.name = name;
     }
 
-    public String getRange() {
-        return range;
+    public RangeProduct getRangeProduct() {
+        return rangeProduct;
     }
 
-    public void setRange(String range) {
-        this.range = range;
+    public void setRangeProduct(RangeProduct rangeProduct) {
+        this.rangeProduct = rangeProduct;
     }
 
     public String getDimensions() {

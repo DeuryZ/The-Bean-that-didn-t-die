@@ -2,6 +2,9 @@ package com.example.TBTDD.persistence.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "gama_producto")
 public class RangeProduct {
@@ -19,6 +22,9 @@ private String htmlDescription;
 
 @Column (name="imagen", length = 256)
 private String image;
+
+@OneToMany(mappedBy = "gama_producto", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+private List<Product> products = new ArrayList<>();
 
     public RangeProduct(String range, String textDescription, String htmlDescription, String image) {
         this.range = range;
