@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 public class Employee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigo_empleado", length = 11)
     private Integer employeeId;
 
@@ -27,7 +26,7 @@ public class Employee {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "codigo_oficina")
-    private Office officeCode;
+    private Office office;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "codigo_jefe", nullable = true)
@@ -46,7 +45,7 @@ public class Employee {
         this.employeeLastName2 = employeeLastName2;
         this.extension = extension;
         this.email = email;
-        this.officeCode = officeCode;
+        this.office = officeCode;
         this.reportsTo = reportsTo;
         this.jobTitle = jobTitle;
     }
@@ -99,12 +98,12 @@ public class Employee {
         this.email = email;
     }
 
-    public Office getOfficeCode() {
-        return officeCode;
+    public Office getOffice() {
+        return office;
     }
 
-    public void setOfficeCode(Office officeCode) {
-        this.officeCode = officeCode;
+    public void setOfficeCode(Office office) {
+        this.office = office;
     }
 
     public Employee getReportsTo() {

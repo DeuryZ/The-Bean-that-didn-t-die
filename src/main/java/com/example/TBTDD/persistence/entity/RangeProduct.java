@@ -5,26 +5,27 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Entity
 @Table(name = "gama_producto")
 public class RangeProduct {
+    @Id
+    @Column(name = "gama", length = 50, nullable = false)
+    private String range;
 
-@Id
-@Column(name = "gama", length = 50)
-@GeneratedValue (strategy = GenerationType.IDENTITY)
-private String range;
+    @Lob
+    @Column (name="descripcion_texto", nullable = true, columnDefinition = "TEXT")
+    private String textDescription;
 
-@Column (name="descripcion_texto", nullable = true)
-private String textDescription;
+    @Lob
+    @Column (name="descripcion_html", nullable = true, columnDefinition = "TEXT")
+    private String htmlDescription;
 
-@Column (name="descripcion_html", nullable = true)
-private String htmlDescription;
+    @Column (name="imagen", length = 256)
+    private String image;
 
-@Column (name="imagen", length = 256)
-private String image;
-
-@OneToMany(mappedBy = "gama_producto", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-private List<Product> products = new ArrayList<>();
+    @OneToMany(mappedBy = "rangeProduct", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Product> products = new ArrayList<>();
 
     public RangeProduct(String range, String textDescription, String htmlDescription, String image) {
         this.range = range;

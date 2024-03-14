@@ -1,13 +1,16 @@
 package com.example.TBTDD.persistence.entity;
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "cliente")
 public class Client {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigo_cliente", length = 11)
-    private Integer clientId;
+    private int clientId;
 
     @Column(name = "nombre_cliente", length = 50)
     private String ClientName;
@@ -42,17 +45,23 @@ public class Client {
     @Column(name="codigo_postal", length = 10, nullable = true)
     private String zipCode;
 
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Order> orders = new ArrayList<>();
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Payment> payments = new ArrayList<>();
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn( referencedColumnName = "codigo_empleado", name="codigo_empleado_rep_ventas", nullable = true)
     private Employee salesRepEmployeeId;
 
     @Column(name="limite_credito", precision = 15, scale = 2, nullable = true)
-    private Double creditLimit;
+    private BigDecimal creditLimit;
 
     public Client() {
     }
 
-    public Client(Integer clientId, String clientName, String contactName, String contactLastName, String phone, String fax, String addressLine1, String addressLine2, String city, String region, String country, String zipCode, Employee salesRepEmployeeId, Double creditLimit) {
+    public Client(int clientId, String clientName, String contactName, String contactLastName, String phone, String fax, String addressLine1, String addressLine2, String city, String region, String country, String zipCode ,Employee salesRepEmployeeId, BigDecimal creditLimit) {
         this.clientId = clientId;
         ClientName = clientName;
         this.contactName = contactName;
@@ -69,11 +78,11 @@ public class Client {
         this.creditLimit = creditLimit;
     }
 
-    public Integer getClientId() {
+    public int getClientId() {
         return clientId;
     }
 
-    public void setClientId(Integer clientId) {
+    public void setClientId(int clientId) {
         this.clientId = clientId;
     }
 
@@ -173,11 +182,11 @@ public class Client {
         this.salesRepEmployeeId = salesRepEmployeeId;
     }
 
-    public Double getCreditLimit() {
+    public BigDecimal getCreditLimit() {
         return creditLimit;
     }
 
-    public void setCreditLimit(Double creditLimit) {
+    public void setCreditLimit(BigDecimal creditLimit) {
         this.creditLimit = creditLimit;
     }
 }

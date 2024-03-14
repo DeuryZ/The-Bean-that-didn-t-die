@@ -3,34 +3,45 @@ package com.example.TBTDD.persistence.entity;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table (name = "producto")
 public class Product {
-@Id
-@Column (name="codigo_producto", length = 15)
-@GeneratedValue (strategy = GenerationType.IDENTITY)
-private String productCode;
+    @Id
+    @Column (name="codigo_producto", length = 15, nullable = false)
+    private String productCode;
 
-@Column(name="nombre" , length=70)
-private String name;
-@ManyToOne(fetch = FetchType.EAGER)
-@JoinColumn (name = "gama")
-private RangeProduct rangeProduct;
+    @Column(name="nombre" , length=70, nullable = false)
+    private String name;
 
-@Column (name="dimensiones", length = 25, nullable = true)
-private String dimensions;
-@Column (name= "proveedor", length = 50, nullable = true)
-private String supplier;
-@Column (name="descripcion", nullable = true)
-private String description;
-@Column (name="cantidad_en_stock", length = 6)
-private short quantityInStock;
-@Column (name="precio_venta", precision= 15, scale= 2)
-private  double salePrice;
-@Column (name="precio_proveedor", precision=15, scale=2, nullable = true)
-private double supplierPrice;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn (name = "gama", nullable = false)
+    private RangeProduct rangeProduct;
 
-    public Product(String productCode, String name, RangeProduct rangeProduct, String dimensions, String supplier, String description, short quantityInStock, double salePrice, double supplierPrice) {
+    @Column (name="dimensiones", length = 25, nullable = true)
+    private String dimensions;
+
+    @Column (name= "proveedor", length = 50, nullable = true)
+    private String supplier;
+
+    @Lob
+    @Column (name="descripcion", nullable = true, columnDefinition = "TEXT")
+    private String description;
+
+    @Column (name="cantidad_en_stock", length = 6, nullable = false)
+    private short quantityInStock;
+
+    @Column (name="precio_venta", precision= 15, scale= 2, nullable = false)
+    private BigDecimal salePrice;
+
+    @Column (name="precio_proveedor", precision=15, scale=2, nullable = true)
+    private BigDecimal supplierPrice;
+
+    public Product() {
+    }
+
+    public Product(String productCode, String name, RangeProduct rangeProduct, String dimensions, String supplier, String description, short quantityInStock, BigDecimal salePrice, BigDecimal supplierPrice) {
         this.productCode = productCode;
         this.name = name;
         this.rangeProduct = rangeProduct;
@@ -98,19 +109,19 @@ private double supplierPrice;
         this.quantityInStock = quantityInStock;
     }
 
-    public double getSalePrice() {
+    public BigDecimal getSalePrice() {
         return salePrice;
     }
 
-    public void setSalePrice(double salePrice) {
+    public void setSalePrice(BigDecimal salePrice) {
         this.salePrice = salePrice;
     }
 
-    public double getSupplierPrice() {
+    public BigDecimal getSupplierPrice() {
         return supplierPrice;
     }
 
-    public void setSupplierPrice(double supplierPrice) {
+    public void setSupplierPrice(BigDecimal supplierPrice) {
         this.supplierPrice = supplierPrice;
     }
 }

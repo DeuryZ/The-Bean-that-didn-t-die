@@ -8,39 +8,39 @@ import java.time.LocalDate;
 @Table (name = "pedido")
 public class Order {
 
-@Id
-@Column(name="codigo_pedido", length = 11)
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private int  orderCode;
+    @Id
+    @Column(name="codigo_pedido", length = 11)
+    private int  orderCode;
 
 
-@Column(name = "fecha_pedido")
-private LocalDate dateOrder;
+    @Column(name = "fecha_pedido")
+    private LocalDate dateOrder;
 
-@Column(name = "fecha_esperada")
-private LocalDate expectedDate;
+    @Column(name = "fecha_esperada")
+    private LocalDate expectedDate;
 
-@Column (name="fecha_entregada",nullable = true )
-private LocalDate deliveredDate;
+    @Column (name="fecha_entregada",nullable = true )
+    private LocalDate deliveredDate;
 
-@Column (name="estado", length = 15)
-private String state;
+    @Column (name="estado", length = 15)
+    private String state;
 
-@Column (name = "comentarios", nullable = true)
-private String comments;
+    @Column (name = "comentarios", nullable = true)
+    private String comments;
 
-@ManyToOne(fetch = FetchType.EAGER)
-@JoinColumn (name = "codigo_cliente")
-private Client clients;
 
-    public Order(int orderCode, LocalDate dateOrder, LocalDate expectedDate, LocalDate deliveredDate, String state, String comments, Client clients) {
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn (name = "codigo_cliente")
+    private Client client;
+
+    public Order(int orderCode, LocalDate dateOrder, LocalDate expectedDate, LocalDate deliveredDate, String state, String comments ,Client clients) {
         this.orderCode = orderCode;
         this.dateOrder = dateOrder;
         this.expectedDate = expectedDate;
         this.deliveredDate = deliveredDate;
         this.state = state;
         this.comments = comments;
-        this.clients = clients;
+        this.client = clients;
     }
 
     public int getOrderCode() {
@@ -91,11 +91,11 @@ private Client clients;
         this.comments = comments;
     }
 
-    public Client getClients() {
-        return clients;
+    public Client getClient() {
+        return client;
     }
 
-    public void setClients(Client clients) {
-        this.clients = clients;
+    public void setClient(Client client) {
+        this.client = client;
     }
 }

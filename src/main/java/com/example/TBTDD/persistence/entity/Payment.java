@@ -1,47 +1,49 @@
 package com.example.TBTDD.persistence.entity;
 
 import jakarta.persistence.*;
+
+import java.math.BigDecimal;
 import java.time.*;
 
 @Entity
 @Table(name = "pago")
 public class Payment {
 
+    @Id
+    @Column(name = "id_transaccion", length = 50)
+    private String transactionId;
+
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "codigo_cliente", nullable = false)
-    private Client clientId;
+    @JoinColumn(referencedColumnName = "codigo_cliente", name = "codigo_cliente", nullable = false)
+    private Client client;
 
     @Column(name="forma_pago", length = 40)
     private String paymentMethod;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_transaccion", length = 50)
-    private String transactionId;
 
     @Column(name="fecha_pago")
     private LocalDate date;
 
     @Column(name="total", precision = 15, scale = 2)
-    private double total;
+    private BigDecimal total;
 
     public Payment() {
     }
 
-    public Payment(Client clientId, String paymentMethod, String transactionId, LocalDate date, double total) {
-        this.clientId = clientId;
+    public Payment(Client client, String paymentMethod, String transactionId, LocalDate date, BigDecimal total) {
+        this.client = client;
         this.paymentMethod = paymentMethod;
         this.transactionId = transactionId;
         this.date = date;
         this.total = total;
     }
 
-    public Client getClientId() {
-        return clientId;
+    public Client getClient() {
+        return client;
     }
 
-    public void setClientId(Client clientId) {
-        this.clientId = clientId;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public String getPaymentMethod() {
@@ -68,23 +70,14 @@ public class Payment {
         this.date = date;
     }
 
-    public double getTotal() {
+    public BigDecimal getTotal() {
         return total;
     }
 
-    public void setTotal(double total) {
+    public void setTotal(BigDecimal total) {
         this.total = total;
     }
 
-    @Override
-    public String toString() {
-        return "Pago{" +
-                "clientId=" + clientId +
-                ", paymentMethod='" + paymentMethod + '\'' +
-                ", transactionId='" + transactionId + '\'' +
-                ", date=" + date +
-                ", total=" + total +
-                '}';
-    }
+
 
 }
