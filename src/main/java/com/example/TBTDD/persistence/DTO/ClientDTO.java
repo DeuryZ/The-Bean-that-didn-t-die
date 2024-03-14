@@ -1,5 +1,7 @@
 package com.example.TBTDD.persistence.DTO;
 
+import com.example.TBTDD.persistence.entity.Client;
+
 import java.math.BigDecimal;
 
 public class ClientDTO {
@@ -31,6 +33,22 @@ private BigDecimal creditLimit;
 
 
     public ClientDTO() {
+    }
+
+    public ClientDTO(int clientId, String clientName, String contactName, String contactLastName, String phone, String fax, String addressLine, String addressLine2, String city, String region, String country, String zipCode, BigDecimal creditLimit) {
+        this.clientId = clientId;
+        ClientName = clientName;
+        this.contactName = contactName;
+        this.contactLastName = contactLastName;
+        this.phone = phone;
+        this.fax = fax;
+        this.addressLine = addressLine;
+        this.addressLine2 = addressLine2;
+        this.city = city;
+        this.region = region;
+        this.country = country;
+        this.zipCode = zipCode;
+        this.creditLimit = creditLimit;
     }
 
     public int getClientId() {
@@ -135,6 +153,42 @@ private BigDecimal creditLimit;
 
     public void setCreditLimit(BigDecimal creditLimit) {
         this.creditLimit = creditLimit;
+    }
+
+    public ClientDTO toDTO(Client client) {
+        ClientDTO clientDTO = new ClientDTO();
+        clientDTO.setClientId(client.getClientId());
+        clientDTO.setClientName(client.getClientName());
+        clientDTO.setContactName(client.getContactName());
+        clientDTO.setContactLastName(client.getContactLastName());
+        clientDTO.setPhone(client.getPhone());
+        clientDTO.setFax(client.getFax());
+        clientDTO.setAddressLine(client.getAddressLine1());
+        clientDTO.setAddressLine2(client.getAddressLine2());
+        clientDTO.setCity(client.getCity());
+        clientDTO.setRegion(client.getRegion());
+        clientDTO.setCountry(client.getCountry());
+        clientDTO.setZipCode(client.getZipCode());
+        clientDTO.setCreditLimit(client.getCreditLimit());
+        return clientDTO;
+    }
+
+    public Client toEntity(ClientDTO clientDTO) {
+        Client client = new Client();
+        client.setClientId(clientDTO.getClientId());
+        client.setClientName(clientDTO.getClientName());
+        client.setContactName(clientDTO.getContactName());
+        client.setContactLastName(clientDTO.getContactLastName());
+        client.setPhone(clientDTO.getPhone());
+        client.setFax(clientDTO.getFax());
+        client.setAddressLine1(clientDTO.getAddressLine());
+        client.setAddressLine2(clientDTO.getAddressLine2());
+        client.setCity(clientDTO.getCity());
+        client.setRegion(clientDTO.getRegion());
+        client.setCountry(clientDTO.getCountry());
+        client.setZipCode(clientDTO.getZipCode());
+        client.setCreditLimit(clientDTO.getCreditLimit());
+        return client;
     }
 
     @Override
