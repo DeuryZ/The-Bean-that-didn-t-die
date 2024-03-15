@@ -29,10 +29,13 @@ public class Order {
     private String comments;
 
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn (name = "codigo_cliente")
     private Client client;
 
+
+    public Order() {
+    }
     public Order(int orderCode, LocalDate dateOrder, LocalDate expectedDate, LocalDate deliveredDate, String state, String comments ,Client clients) {
         this.orderCode = orderCode;
         this.dateOrder = dateOrder;

@@ -1,6 +1,7 @@
 package com.example.TBTDD.persistence.DTO;
 
 import com.example.TBTDD.persistence.entity.Client;
+import com.example.TBTDD.persistence.entity.Employee;
 
 import java.math.BigDecimal;
 
@@ -29,13 +30,15 @@ private String country;
 
 private String zipCode;
 
+private Employee salesRepEmployeeId;
+
 private BigDecimal creditLimit;
 
 
     public ClientDTO() {
     }
 
-    public ClientDTO(int clientId, String clientName, String contactName, String contactLastName, String phone, String fax, String addressLine, String addressLine2, String city, String region, String country, String zipCode, BigDecimal creditLimit) {
+    public ClientDTO(int clientId, String clientName, String contactName, String contactLastName, String phone, String fax, String addressLine, String addressLine2, String city, String region, String country, String zipCode, BigDecimal creditLimit, Employee salesRepEmployeeId) {
         this.clientId = clientId;
         ClientName = clientName;
         this.contactName = contactName;
@@ -49,6 +52,15 @@ private BigDecimal creditLimit;
         this.country = country;
         this.zipCode = zipCode;
         this.creditLimit = creditLimit;
+        this.salesRepEmployeeId = salesRepEmployeeId;
+    }
+
+    public Employee getSalesRepEmployeeId() {
+        return salesRepEmployeeId;
+    }
+
+    public void setSalesRepEmployeeId(Employee salesRepEmployeeId) {
+        this.salesRepEmployeeId = salesRepEmployeeId;
     }
 
     public int getClientId() {
@@ -155,7 +167,7 @@ private BigDecimal creditLimit;
         this.creditLimit = creditLimit;
     }
 
-    public ClientDTO toDTO(Client client) {
+    public static ClientDTO toDTO(Client client) {
         ClientDTO clientDTO = new ClientDTO();
         clientDTO.setClientId(client.getClientId());
         clientDTO.setClientName(client.getClientName());
@@ -173,7 +185,7 @@ private BigDecimal creditLimit;
         return clientDTO;
     }
 
-    public Client toEntity(ClientDTO clientDTO) {
+    public static Client toEntity(ClientDTO clientDTO) {
         Client client = new Client();
         client.setClientId(clientDTO.getClientId());
         client.setClientName(clientDTO.getClientName());

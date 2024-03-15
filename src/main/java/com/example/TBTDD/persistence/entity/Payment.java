@@ -13,7 +13,7 @@ public class Payment {
     @Column(name = "id_transaccion", length = 50)
     private String transactionId;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "codigo_cliente", name = "codigo_cliente", nullable = false)
     private Client client;
 

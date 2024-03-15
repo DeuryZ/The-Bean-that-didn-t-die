@@ -24,8 +24,13 @@ public class RangeProduct {
     @Column (name="imagen", length = 256)
     private String image;
 
-    @OneToMany(mappedBy = "rangeProduct", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "rangeProduct", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Product> products = new ArrayList<>();
+
+
+    public RangeProduct() {
+
+    }
 
     public RangeProduct(String range, String textDescription, String htmlDescription, String image) {
         this.range = range;

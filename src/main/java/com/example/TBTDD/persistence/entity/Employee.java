@@ -24,11 +24,11 @@ public class Employee {
     @Column(name = "email", length = 100)
     private String email;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "codigo_oficina")
     private Office office;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "codigo_jefe", nullable = true)
     private Employee reportsTo;
 

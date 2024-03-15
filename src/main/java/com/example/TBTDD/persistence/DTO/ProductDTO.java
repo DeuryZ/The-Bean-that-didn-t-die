@@ -1,5 +1,7 @@
 package com.example.TBTDD.persistence.DTO;
 
+import com.example.TBTDD.persistence.entity.Product;
+
 import java.math.BigDecimal;
 
 public class ProductDTO {
@@ -92,5 +94,31 @@ public class ProductDTO {
                 ", salePrice=" + salePrice +
                 ", supplierPrice=" + supplierPrice +
                 '}';
+    }
+
+    public static ProductDTO toDTO(Product product) {
+        ProductDTO productDTO = new ProductDTO();
+        productDTO.setProductCode(product.getProductCode());
+        productDTO.setName(product.getName());
+        productDTO.setDimensions(product.getDimensions());
+        productDTO.setSupplier(product.getSupplier());
+        productDTO.setDescription(product.getDescription());
+        productDTO.setQuantityInStock(product.getQuantityInStock());
+        productDTO.setSalePrice(product.getSalePrice());
+        productDTO.setSupplierPrice(product.getSupplierPrice());
+        return productDTO;
+    }
+
+    public static Product toEntity(ProductDTO productDTO) {
+        Product product = new Product();
+        product.setProductCode(productDTO.getProductCode());
+        product.setName(productDTO.getName());
+        product.setDimensions(productDTO.getDimensions());
+        product.setSupplier(productDTO.getSupplier());
+        product.setDescription(productDTO.getDescription());
+        product.setQuantityInStock(productDTO.getQuantityInStock());
+        product.setSalePrice(productDTO.getSalePrice());
+        product.setSupplierPrice(productDTO.getSupplierPrice());
+        return product;
     }
 }

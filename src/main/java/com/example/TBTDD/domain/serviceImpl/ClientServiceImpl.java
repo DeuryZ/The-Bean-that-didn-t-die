@@ -1,9 +1,11 @@
 package com.example.TBTDD.domain.serviceImpl;
 
 import com.example.TBTDD.domain.repository.ClientRepository;
+import com.example.TBTDD.domain.repository.EmployeeRepository;
 import com.example.TBTDD.domain.service.ClientService;
 import com.example.TBTDD.persistence.DTO.ClientDTO;
 import com.example.TBTDD.persistence.entity.Client;
+import com.example.TBTDD.persistence.entity.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +16,12 @@ import java.util.List;
 public class ClientServiceImpl implements ClientService {
 
     private final ClientRepository clientRepository;
+    private final EmployeeRepository employeeRepository;
 
     @Autowired
-    public ClientServiceImpl(ClientRepository clientRepository) {
+    public ClientServiceImpl(ClientRepository clientRepository,EmployeeRepository employeeRepository) {
         this.clientRepository = clientRepository;
+        this.employeeRepository = employeeRepository;
     }
 
     @Override
@@ -25,20 +29,7 @@ public class ClientServiceImpl implements ClientService {
         List<Client> clients = clientRepository.findAll();
         List<ClientDTO> clientDTOs = new ArrayList<>();
         clients.forEach(client -> {
-            ClientDTO clientDTO = new ClientDTO();
-            clientDTO.setClientId(client.getClientId());
-            clientDTO.setClientName(client.getClientName());
-            clientDTO.setContactName(client.getContactName());
-            clientDTO.setContactLastName(client.getContactLastName());
-            clientDTO.setPhone(client.getPhone());
-            clientDTO.setFax(client.getFax());
-            clientDTO.setAddressLine(client.getAddressLine1());
-            clientDTO.setAddressLine2(client.getAddressLine2());
-            clientDTO.setCity(client.getCity());
-            clientDTO.setRegion(client.getRegion());
-            clientDTO.setCountry(client.getCountry());
-            clientDTO.setZipCode(client.getZipCode());
-            clientDTO.setCreditLimit(client.getCreditLimit());
+            ClientDTO clientDTO = ClientDTO.toDTO(client);
             clientDTOs.add(clientDTO);
         });
         return clientDTOs;
@@ -47,20 +38,42 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public ClientDTO getClientById(String clientId) {
         Client client = clientRepository.findById(clientId).get();
-        ClientDTO clientDTO = new ClientDTO();
-        clientDTO.setClientId(client.getClientId());
-        clientDTO.setClientName(client.getClientName());
-        clientDTO.setContactName(client.getContactName());
-        clientDTO.setContactLastName(client.getContactLastName());
-        clientDTO.setPhone(client.getPhone());
-        clientDTO.setFax(client.getFax());
-        clientDTO.setAddressLine(client.getAddressLine1());
-        clientDTO.setAddressLine2(client.getAddressLine2());
-        clientDTO.setCity(client.getCity());
-        clientDTO.setRegion(client.getRegion());
-        clientDTO.setCountry(client.getCountry());
-        clientDTO.setZipCode(client.getZipCode());
-        clientDTO.setCreditLimit(client.getCreditLimit());
+        ClientDTO clientDTO = ClientDTO.toDTO(client);
         return clientDTO;
     }
+
+    @Override
+    public List<ClientDTO> findClientsByCountry(String country) {
+        List<Client> clients = clientRepository.findClientsByCountry(country);
+        List<ClientDTO> clientDTOs = new ArrayList<>();
+        clients.forEach(client -> {
+            ClientDTO clientDTO = ClientDTO.toDTO(client);
+            clientDTOs.add(clientDTO);
+        });
+        return clientDTOs;
+    }
+
+    @Override
+    public List<ClientDTO> findClientsWithPaymentInAYear(int year) {
+        List<Client> clients = clientRepository.findClientWithPaymentInAYear(year);
+        List<ClientDTO> clientDTOs = new ArrayList<>();
+        clients.forEach(client -> {
+            ClientDTO clientDTO = ClientDTO.toDTO(client);
+            clientDTOs.add(clientDTO);
+        });
+        return clientDTOs;
+    }
+
+    @Override
+    public List<ClientDTO> findClientsByCountryAndSalesRep(String country, Employee salesRepEmployeeId1, Employee salesRepEmployeeId2) {
+        List<Client> clients = clientRepository.findClientsByCityAndSalesRep(country, salesRepEmployeeId1, salesRepEmployeeId2);
+        List<ClientDTO> clientDTOs = new ArrayList<>();
+        clients.forEach(client -> {
+            ClientDTO clientDTO = ClientDTO.toDTO(client);
+            clientDTOs.add(clientDTO);
+        });
+        return clientDTOs;
+    }
+
+
 }

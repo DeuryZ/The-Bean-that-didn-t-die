@@ -45,13 +45,13 @@ public class Client {
     @Column(name="codigo_postal", length = 10, nullable = true)
     private String zipCode;
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Order> orders = new ArrayList<>();
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Payment> payments = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn( referencedColumnName = "codigo_empleado", name="codigo_empleado_rep_ventas", nullable = true)
     private Employee salesRepEmployeeId;
 

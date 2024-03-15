@@ -1,5 +1,7 @@
 package com.example.TBTDD.persistence.DTO;
 
+import com.example.TBTDD.persistence.entity.Order;
+
 import java.time.LocalDate;
 
 public class OrderDTO {
@@ -71,5 +73,27 @@ public class OrderDTO {
                 ", state='" + state + '\'' +
                 ", comments='" + comments + '\'' +
                 '}';
+    }
+
+    public static OrderDTO toDTO(Order order) {
+        OrderDTO orderDTO = new OrderDTO();
+        orderDTO.setOrderCode(order.getOrderCode());
+        orderDTO.setDateOrder(order.getDateOrder());
+        orderDTO.setExpectedDate(order.getExpectedDate());
+        orderDTO.setDeliveredDate(order.getDeliveredDate());
+        orderDTO.setState(order.getState());
+        orderDTO.setComments(order.getComments());
+        return orderDTO;
+    }
+
+    public static Order toEntity(OrderDTO orderDTO) {
+        Order order = new Order();
+        order.setOrderCode(orderDTO.getOrderCode());
+        order.setDateOrder(orderDTO.getDateOrder());
+        order.setExpectedDate(orderDTO.getExpectedDate());
+        order.setDeliveredDate(orderDTO.getDeliveredDate());
+        order.setState(orderDTO.getState());
+        order.setComments(orderDTO.getComments());
+        return order;
     }
 }

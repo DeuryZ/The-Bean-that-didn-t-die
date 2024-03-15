@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface OrderService {
     List<OrderDTO> findAllOrders();
-    OrderDTO getOrderById(String orderId);
+    OrderDTO getOrderById(Integer orderId);
 }

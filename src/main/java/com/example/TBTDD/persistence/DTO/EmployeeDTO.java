@@ -1,5 +1,7 @@
 package com.example.TBTDD.persistence.DTO;
 
+import com.example.TBTDD.persistence.entity.Employee;
+
 public class EmployeeDTO {
     private Integer employeeId;
     private String employeeName;
@@ -81,5 +83,28 @@ public class EmployeeDTO {
                 ", email='" + email + '\'' +
                 ", jobTitle='" + jobTitle + '\'' +
                 '}';
+    }
+
+    public static EmployeeDTO toDTO(Employee employee){
+        EmployeeDTO employeeDTO = new EmployeeDTO();
+        employeeDTO.setEmployeeId(employee.getEmployeeId());
+        employeeDTO.setEmployeeName(employee.getEmployeeName());
+        employeeDTO.setEmployeeLastName1(employee.getEmployeeLastName1());
+        employeeDTO.setEmployeeLastName2(employee.getEmployeeLastName2());
+        employeeDTO.setExtension(employee.getExtension());
+        employeeDTO.setEmail(employee.getEmail());
+        employeeDTO.setJobTitle(employee.getJobTitle());
+        return employeeDTO;
+    }
+    public static Employee toEntity(EmployeeDTO employeeDTO){
+        Employee employee = new Employee();
+        employee.setEmployeeId(employeeDTO.getEmployeeId());
+        employee.setEmployeeName(employeeDTO.getEmployeeName());
+        employee.setEmployeeLastName1(employeeDTO.getEmployeeLastName1());
+        employee.setEmployeeLastName2(employeeDTO.getEmployeeLastName2());
+        employee.setExtension(employeeDTO.getExtension());
+        employee.setEmail(employeeDTO.getEmail());
+        employee.setJobTitle(employeeDTO.getJobTitle());
+        return employee;
     }
 }

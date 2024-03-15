@@ -1,5 +1,7 @@
 package com.example.TBTDD.persistence.DTO;
 
+import com.example.TBTDD.persistence.entity.RangeProduct;
+
 public class RangeProductDTO {
     private String range;
     private String textDescription;
@@ -7,6 +9,14 @@ public class RangeProductDTO {
     private String image;
 
     public RangeProductDTO() {
+    }
+
+
+    public RangeProductDTO(String range, String textDescription, String htmlDescription, String image) {
+        this.range = range;
+        this.textDescription = textDescription;
+        this.htmlDescription = htmlDescription;
+        this.image = image;
     }
 
     public String getRange() {
@@ -49,5 +59,23 @@ public class RangeProductDTO {
                 ", htmlDescription='" + htmlDescription + '\'' +
                 ", image='" + image + '\'' +
                 '}';
+    }
+
+    public static RangeProductDTO toDTO(RangeProduct rangeProduct) {
+        RangeProductDTO rangeProductDTO = new RangeProductDTO();
+        rangeProductDTO.setRange(rangeProduct.getRange());
+        rangeProductDTO.setTextDescription(rangeProduct.getTextDescription());
+        rangeProductDTO.setHtmlDescription(rangeProduct.getHtmlDescription());
+        rangeProductDTO.setImage(rangeProduct.getImage());
+        return rangeProductDTO;
+    }
+
+    public static RangeProduct toEntity(RangeProductDTO rangeProductDTO) {
+        RangeProduct rangeProduct = new RangeProduct();
+        rangeProduct.setRange(rangeProductDTO.getRange());
+        rangeProduct.setTextDescription(rangeProductDTO.getTextDescription());
+        rangeProduct.setHtmlDescription(rangeProductDTO.getHtmlDescription());
+        rangeProduct.setImage(rangeProductDTO.getImage());
+        return rangeProduct;
     }
 }

@@ -15,7 +15,7 @@ public class Product {
     @Column(name="nombre" , length=70, nullable = false)
     private String name;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn (name = "gama", nullable = false)
     private RangeProduct rangeProduct;
 

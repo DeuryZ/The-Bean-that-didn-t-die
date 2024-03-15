@@ -1,4 +1,4 @@
-package com.example.TBTDD.domain.repository;
-
-public interface OrderDetailIdRepository {
-}
+//package com.example.TBTDD.domain.repository;
+//
+//public interface OrderDetailIdRepository {
+//}

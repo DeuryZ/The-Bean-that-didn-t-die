@@ -33,8 +33,9 @@ public class Office {
     @Column(name = "linea_direccion2", length = 50, nullable = true)
     private String addressLine2;
 
-    @OneToMany(mappedBy = "office", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "office", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Employee> employees = new ArrayList<>();
+
     public Office() {
     }
 

@@ -1,6 +1,7 @@
 package com.example.TBTDD.persistence.DTO;
 
 import com.example.TBTDD.persistence.entity.Client;
+import com.example.TBTDD.persistence.entity.Payment;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -64,5 +65,25 @@ public class PaymentDTO {
                 ", date=" + date +
                 ", total=" + total +
                 '}';
+    }
+
+    public static PaymentDTO toDTO(com.example.TBTDD.persistence.entity.Payment payment) {
+        PaymentDTO paymentDTO = new PaymentDTO();
+        paymentDTO.setTransactionId(payment.getTransactionId());
+        paymentDTO.setClient(payment.getClient());
+        paymentDTO.setPaymentMethod(payment.getPaymentMethod());
+        paymentDTO.setDate(payment.getDate());
+        paymentDTO.setTotal(payment.getTotal());
+        return paymentDTO;
+    }
+
+    public static Payment toEntity(PaymentDTO paymentDTO) {
+        Payment payment = new Payment();
+        payment.setTransactionId(paymentDTO.getTransactionId());
+        payment.setClient(paymentDTO.getClient());
+        payment.setPaymentMethod(paymentDTO.getPaymentMethod());
+        payment.setDate(paymentDTO.getDate());
+        payment.setTotal(paymentDTO.getTotal());
+        return payment;
     }
 }
