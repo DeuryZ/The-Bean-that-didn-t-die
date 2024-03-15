@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -38,5 +39,56 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeDTO;
     }
 
+    @Override
+    public List<EmployeeDTO> findBossCompany() {
+        List<Employee> employees = employeeRepository.findBossCompany();
+        List<EmployeeDTO> employeeDTOs = new ArrayList<>();
+        employees.forEach(employee -> {
+            EmployeeDTO employeeDTO = EmployeeDTO.toDTO(employee);
+            employeeDTOs.add(employeeDTO);
+        });
+        return employeeDTOs;
+    }
+
+    @Override
+    public List<EmployeeDTO> findDifferentByJobTitle(String jobTitle) {
+        List<Employee> employees = employeeRepository.findDifferentByJobTitle(jobTitle);
+        List<EmployeeDTO> employeeDTOs = new ArrayList<>();
+        employees.forEach(employee -> {
+            EmployeeDTO employeeDTO = EmployeeDTO.toDTO(employee);
+            employeeDTOs.add(employeeDTO);
+        });
+        return employeeDTOs;
+    }
+
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

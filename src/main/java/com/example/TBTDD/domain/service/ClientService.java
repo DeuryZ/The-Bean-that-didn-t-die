@@ -11,6 +11,6 @@ public interface ClientService {
     ClientDTO getClientById(String clientId);
     List<ClientDTO> findClientsByCountry(String country);
     List<ClientDTO> findClientsWithPaymentInAYear(int year);
-    List<ClientDTO> findClientsByCountryAndSalesRep(String country, Employee salesRepEmployeeId1, Employee salesRepEmployeeId2);
+    List<ClientDTO> findClientsByCityAndSalesRep(String country, Employee salesRepEmployeeId1, Employee salesRepEmployeeId2);
 
 }

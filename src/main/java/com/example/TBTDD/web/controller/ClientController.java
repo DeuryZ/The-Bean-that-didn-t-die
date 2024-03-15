@@ -40,9 +40,9 @@ public class ClientController {
         return clientService.findClientsWithPaymentInAYear(year);
     }
 
-    @GetMapping("/ClientsByCountryAndSalesRep/{country}/{salesRepEmployeeId1}/{salesRepEmployeeId2}")
+    @GetMapping("/findClientsByCityAndSalesRep/{country}/{salesRepEmployeeId1}/{salesRepEmployeeId2}")
 
-    public List<ClientDTO> findClientsByCountryAndSalesRep(@PathVariable String country, @PathVariable String salesRepEmployeeId1, @PathVariable String salesRepEmployeeId2) {
-        return clientService.findClientsByCountryAndSalesRep(country, EmployeeDTO.toEntity(employeeService.getEmployeeById(salesRepEmployeeId1)), EmployeeDTO.toEntity(employeeService.getEmployeeById(salesRepEmployeeId2)));
+    public List<ClientDTO> findClientsByCityAndSalesRep(@PathVariable String country, @PathVariable String salesRepEmployeeId1, @PathVariable String salesRepEmployeeId2) {
+        return clientService.findClientsByCityAndSalesRep(country, EmployeeDTO.toEntity(employeeService.getEmployeeById(salesRepEmployeeId1)), EmployeeDTO.toEntity(employeeService.getEmployeeById(salesRepEmployeeId2)));
     }
 }

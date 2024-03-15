@@ -65,7 +65,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public List<ClientDTO> findClientsByCountryAndSalesRep(String country, Employee salesRepEmployeeId1, Employee salesRepEmployeeId2) {
+    public List<ClientDTO> findClientsByCityAndSalesRep(String country, Employee salesRepEmployeeId1, Employee salesRepEmployeeId2) {
         List<Client> clients = clientRepository.findClientsByCityAndSalesRep(country, salesRepEmployeeId1, salesRepEmployeeId2);
         List<ClientDTO> clientDTOs = new ArrayList<>();
         clients.forEach(client -> {
