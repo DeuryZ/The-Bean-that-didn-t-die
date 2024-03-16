@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PaymentServiceImpl implements PaymentService {
@@ -19,21 +20,38 @@ public class PaymentServiceImpl implements PaymentService {
         this.paymentRepository = paymentRepository;
     }
 
+
     @Override
     public List<PaymentDTO> findAllPayments() {
-        List<PaymentDTO> paymentDTOs = new ArrayList<>();
         List<Payment> payments = paymentRepository.findAll();
-        payments.forEach(payment -> {
-            PaymentDTO paymentDTO = PaymentDTO.toDTO(payment);
-            paymentDTOs.add(paymentDTO);
-        });
-        return paymentDTOs;
+        List<PaymentDTO> paymentDTOS = new ArrayList<>();
+        payments.forEach(
+                payment -> paymentDTOS.add(PaymentDTO.toDTO(payment))
+        );
+        return paymentDTOS;
     }
 
     @Override
     public PaymentDTO getPaymentById(String paymentId) {
-        Payment payment = paymentRepository.findById(paymentId).get();
-        PaymentDTO paymentDTO = PaymentDTO.toDTO(payment);
-        return paymentDTO;
+        Optional<Payment> payment = paymentRepository.findById(paymentId);
+        if (payment.isPresent()) {
+            return PaymentDTO.toDTO(payment.get());
+        }
+        return null;
+    }
+
+    @Override
+    public List<PaymentDTO> getPaymentsByTypeAndYearOrganized(int year, String paymentType) {
+        List<Payment> payments = paymentRepository.getPaymentsByTypeAndYearOrganized(year, paymentType);
+        List<PaymentDTO> paymentDTOS = new ArrayList<>();
+        payments.forEach(
+                payment -> paymentDTOS.add(PaymentDTO.toDTO(payment))
+        );
+        return paymentDTOS;
+    }
+
+    @Override
+    public List<Object> getPaymentMethods() {
+        return paymentRepository.getPaymentMethods();
     }
 }

@@ -7,14 +7,18 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Objects;
 
 public interface ClientRepository extends JpaRepository<Client, String> {
-    @Query("SELECT c FROM Client c WHERE c.country = :country")
-    List<Client> findClientsByCountry(@Param("country") String country);
+    //6.
+    @Query("SELECT c.clientName FROM Client c WHERE c.country = :country")
+    List<Object> findClientsByCountry(@Param("country") String country);
 
-    @Query("SELECT DISTINCT c FROM Client c JOIN c.payments p WHERE YEAR(p.date) = :year")
-    List<Client> findClientWithPaymentInAYear(@Param("year") int year);
+    //8.
+    @Query("SELECT DISTINCT c.clientId FROM Client c JOIN c.payments p WHERE YEAR(p.date) = :year")
+        List<Object> findClientWithPaymentInAYear(@Param("year") int year);
 
+    //16.
     @Query("SELECT c FROM Client c WHERE c.city = :city AND (c.salesRepEmployeeId = :salesRepEmployeeId1 OR c.salesRepEmployeeId = :salesRepEmployeeId2)")
     List<Client> findClientsByCityAndSalesRep(@Param("city") String city, @Param("salesRepEmployeeId1") Employee salesRepEmployeeId1, @Param("salesRepEmployeeId2") Employee salesRepEmployeeId2);
 

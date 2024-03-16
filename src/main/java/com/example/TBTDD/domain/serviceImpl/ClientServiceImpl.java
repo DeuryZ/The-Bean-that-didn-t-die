@@ -43,30 +43,22 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public List<ClientDTO> findClientsByCountry(String country) {
-        List<Client> clients = clientRepository.findClientsByCountry(country);
-        List<ClientDTO> clientDTOs = new ArrayList<>();
-        clients.forEach(client -> {
-            ClientDTO clientDTO = ClientDTO.toDTO(client);
-            clientDTOs.add(clientDTO);
-        });
-        return clientDTOs;
+    public List<Object> findClientsByCountry(String country) {
+        List<Object> clients = clientRepository.findClientsByCountry(country);
+        return clients;
     }
 
     @Override
-    public List<ClientDTO> findClientsWithPaymentInAYear(int year) {
-        List<Client> clients = clientRepository.findClientWithPaymentInAYear(year);
-        List<ClientDTO> clientDTOs = new ArrayList<>();
-        clients.forEach(client -> {
-            ClientDTO clientDTO = ClientDTO.toDTO(client);
-            clientDTOs.add(clientDTO);
-        });
-        return clientDTOs;
+    public List<Object> findClientsWithPaymentInAYear(int year) {
+        List<Object> clients = clientRepository.findClientWithPaymentInAYear(year);
+        return clients;
     }
 
     @Override
-    public List<ClientDTO> findClientsByCityAndSalesRep(String country, Employee salesRepEmployeeId1, Employee salesRepEmployeeId2) {
-        List<Client> clients = clientRepository.findClientsByCityAndSalesRep(country, salesRepEmployeeId1, salesRepEmployeeId2);
+    public List<ClientDTO> findClientsByCityAndSalesRep(String country, String salesRepEmployeeId1, String salesRepEmployeeId2) {
+        Employee salesRepEmployee1Obj = employeeRepository.findById(salesRepEmployeeId1).get();
+        Employee salesRepEmployee2Obj = employeeRepository.findById(salesRepEmployeeId2).get();
+        List<Client> clients = clientRepository.findClientsByCityAndSalesRep(country, salesRepEmployee1Obj, salesRepEmployee2Obj);
         List<ClientDTO> clientDTOs = new ArrayList<>();
         clients.forEach(client -> {
             ClientDTO clientDTO = ClientDTO.toDTO(client);

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/office")
+@RequestMapping("/offices")
 public class OfficeController {
     private final OfficeServiceImpl officeService;
 
@@ -25,12 +25,24 @@ public class OfficeController {
         this.employeeService = employeeService;
     }
     @GetMapping("/all")
-    public List<OfficeDTO> getCodeAndCityByOffice(){return officeService.findAllOffices();}
+    public List<OfficeDTO> findAllOffices(){
+        return officeService.findAllOffices();
+    }
 
 
-    @GetMapping("/OfficeByCountry/{country}")
-    public List<Object>getCityAndNumberBySpain(@PathVariable String country){
-        return officeService.getCityAndNumberBySpain(country);
+    @GetMapping("/getOfficeById/{officeId}")
+    public OfficeDTO getOfficeById(@PathVariable String officeId){
+        return officeService.getOfficeById(officeId);
+    }
+
+    @GetMapping("/getCodeAndCityByOffice")
+    public List<Object> getCodeAndCityByOffice(){
+        return officeService.getCodeAndCityFromOffices();
+    }
+
+    @GetMapping("/getCityAndNumberByCountry/{country}")
+    public List<Object> getCityAndNumberBySpain(@PathVariable String country){
+        return officeService.getCityAndNumberByCountry(country);
     }
 
 

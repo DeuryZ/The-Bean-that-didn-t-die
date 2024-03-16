@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OfficeServiceImpl implements OfficeService {
@@ -22,47 +23,31 @@ public class OfficeServiceImpl implements OfficeService {
         this.officeRepository = officeRepository;
     }
 
+
     @Override
     public List<OfficeDTO> findAllOffices() {
-        List<OfficeDTO> officeDTOs = new ArrayList<>();
         List<Office> offices = officeRepository.findAll();
-        offices.forEach(office -> {
-            OfficeDTO officeDTO = OfficeDTO.toDTO(office);
-            officeDTOs.add(officeDTO);
-        });
+        List<OfficeDTO> officeDTOs = new ArrayList<>();
+        offices.forEach(office -> officeDTOs.add(OfficeDTO.toDTO(office)));
         return officeDTOs;
     }
 
     @Override
     public OfficeDTO getOfficeById(String officeId) {
-        Office office = officeRepository.findById(officeId).get();
-        OfficeDTO officeDTO = OfficeDTO.toDTO(office);
-        return officeDTO;
+        Optional<Office> office = officeRepository.findById(officeId);
+        if (office.isPresent()) {
+            return OfficeDTO.toDTO(office.get());
+        }
+        return null;
     }
 
     @Override
-    public List<OfficeDTO> getCodeAndCityByOffice() {
-        List<Office> offices=officeRepository.getCodeAndCityByOffice();
-        List<OfficeDTO> officeDTOS= new ArrayList<>();
-        offices.forEach(
-                office -> officeDTOS.add(OfficeDTO.toDTO(office))
-        );
-        return officeDTOS;
+    public List<Object> getCodeAndCityFromOffices() {
+        return officeRepository.getCodeAndCityFromOffices();
     }
 
     @Override
-    public List<Object> getCityAndNumberBySpain(String country) {
-//        List<Office> offices = officeRepository.getCityAndNumberBySpain(country);
-//        List<OfficeDTO> officeDTOS = new ArrayList<>();
-//        offices.forEach(office -> {
-//            OfficeDTO officeDTO = OfficeDTO.toDTO(office);
-//            officeDTOS.add(officeDTO);
-//        });
-//        return officeDTOS;
-
-        List<Object> offices = officeRepository.getCityAndNumberBySpain(country);
-        return offices;
+    public List<Object> getCityAndNumberByCountry(String country) {
+        return officeRepository.getCityAndNumberByCountry(country);
     }
-
-
 }

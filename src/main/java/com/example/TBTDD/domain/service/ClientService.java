@@ -9,8 +9,8 @@ import java.util.List;
 public interface ClientService {
     List<ClientDTO> findAllClients();
     ClientDTO getClientById(String clientId);
-    List<ClientDTO> findClientsByCountry(String country);
-    List<ClientDTO> findClientsWithPaymentInAYear(int year);
-    List<ClientDTO> findClientsByCityAndSalesRep(String country, Employee salesRepEmployeeId1, Employee salesRepEmployeeId2);
+    List<Object> findClientsByCountry(String country);
+    List<Object> findClientsWithPaymentInAYear(int year);
+    List<ClientDTO> findClientsByCityAndSalesRep(String country, String salesRepEmployeeId1, String salesRepEmployeeId2);
 
 }

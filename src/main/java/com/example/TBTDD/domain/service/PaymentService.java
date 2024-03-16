@@ -7,4 +7,6 @@ import java.util.List;
 public interface PaymentService {
     List<PaymentDTO> findAllPayments();
     PaymentDTO getPaymentById(String paymentId);
+    List<PaymentDTO> getPaymentsByTypeAndYearOrganized(int year, String paymentType);
+    List<Object> getPaymentMethods();
 }

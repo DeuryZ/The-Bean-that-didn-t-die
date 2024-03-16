@@ -9,8 +9,6 @@ public interface OfficeService {
 
     List<OfficeDTO> findAllOffices();
     OfficeDTO getOfficeById(String officeId);
-
-    List<OfficeDTO>getCodeAndCityByOffice();
-
-    List<Object>getCityAndNumberBySpain(String country);
+    List<Object>getCodeAndCityFromOffices();
+    List<Object>getCityAndNumberByCountry(String country);
 }

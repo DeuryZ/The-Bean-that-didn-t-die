@@ -30,19 +30,27 @@ public class ClientController {
     }
 
 
-    @GetMapping("/ClientsByCountry/{country}")
-    public List<ClientDTO> findClientsByCountry(@PathVariable String country) {
+    @GetMapping("/findClientById/{clientId}")
+    public ClientDTO getClientById(@PathVariable String clientId) {
+        return clientService.getClientById(clientId);
+    }
+
+    @GetMapping("/findClientsByCountry/{country}")
+    public List<Object> findClientsByCountry(@PathVariable String country) {
         return clientService.findClientsByCountry(country);
     }
 
-    @GetMapping("/ClientsWithPaymentInAYear/{year}")
-    public List<ClientDTO> findClientsWithPaymentInAYear(@PathVariable int year) {
+    @GetMapping("/findClientsWithPaymentInAYear/{year}")
+    public List<Object> findClientsWithPaymentInAYear(@PathVariable int year) {
         return clientService.findClientsWithPaymentInAYear(year);
     }
 
-    @GetMapping("/findClientsByCityAndSalesRep/{country}/{salesRepEmployeeId1}/{salesRepEmployeeId2}")
-
+    @GetMapping("/findClientsByCityAndSalesRep/{city}/{salesRepEmployeeId1}/{salesRepEmployeeId2}")
     public List<ClientDTO> findClientsByCityAndSalesRep(@PathVariable String country, @PathVariable String salesRepEmployeeId1, @PathVariable String salesRepEmployeeId2) {
-        return clientService.findClientsByCityAndSalesRep(country, EmployeeDTO.toEntity(employeeService.getEmployeeById(salesRepEmployeeId1)), EmployeeDTO.toEntity(employeeService.getEmployeeById(salesRepEmployeeId2)));
+        return clientService.findClientsByCityAndSalesRep(country, salesRepEmployeeId1, salesRepEmployeeId2);
     }
+
+
+
+
 }

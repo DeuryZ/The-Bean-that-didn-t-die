@@ -13,7 +13,7 @@ public class Client {
     private int clientId;
 
     @Column(name = "nombre_cliente", length = 50)
-    private String ClientName;
+    private String clientName;
 
     @Column(name = "nombre_contacto" , length = 30, nullable = true)
     private String contactName;
@@ -63,7 +63,7 @@ public class Client {
 
     public Client(int clientId, String clientName, String contactName, String contactLastName, String phone, String fax, String addressLine1, String addressLine2, String city, String region, String country, String zipCode ,Employee salesRepEmployeeId, BigDecimal creditLimit) {
         this.clientId = clientId;
-        ClientName = clientName;
+        this.clientName = clientName;
         this.contactName = contactName;
         this.contactLastName = contactLastName;
         this.phone = phone;
@@ -87,11 +87,11 @@ public class Client {
     }
 
     public String getClientName() {
-        return ClientName;
+        return clientName;
     }
 
     public void setClientName(String clientName) {
-        ClientName = clientName;
+        this.clientName = clientName;
     }
 
     public String getContactName() {

@@ -3,6 +3,7 @@ package com.example.TBTDD.web.controller;
 import com.example.TBTDD.domain.serviceImpl.EmployeeServiceImpl;
 import com.example.TBTDD.persistence.DTO.EmployeeDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,8 +25,18 @@ public class EmployeeController {
         return employeeService.findAllEmployees();
     }
 
+    @RequestMapping("/getEmployeeById/{employeeId}")
+    public EmployeeDTO getEmployeeById(@PathVariable String employeeId) {
+        return employeeService.getEmployeeById(employeeId);
+    }
+
+    @RequestMapping("/getEmployeeInfoByReportsTo/{reportsTo}")
+    public List<Object> findEmployeesByReportsTo(@PathVariable String reportsTo) {
+        return employeeService.getEmployeeInfoByReportsTo(reportsTo);
+    }
+
     @RequestMapping("/findBossCompany")
-    public List<EmployeeDTO> findEmployeesByReportsTo() {
+    public List<EmployeeDTO> findBossCompany() {
         return employeeService.findBossCompany();
     }
 

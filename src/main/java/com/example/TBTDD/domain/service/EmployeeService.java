@@ -8,6 +8,7 @@ public interface EmployeeService {
 
     List<EmployeeDTO> findAllEmployees();
     EmployeeDTO getEmployeeById(String employeeId);
+    List<Object> getEmployeeInfoByReportsTo(String reportsTo);
     List<EmployeeDTO> findBossCompany();
     List<EmployeeDTO> findDifferentByJobTitle(String jobTitle);
 }

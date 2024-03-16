@@ -9,11 +9,13 @@ import java.util.List;
 
 public interface OfficeRepository extends JpaRepository<Office, String> {
 
-    @Query("SELECT o FROM Office o")
-    List<Office> getCodeAndCityByOffice();
+    //1.
+    @Query("SELECT o.officeCode, o.city FROM Office o")
+    List<Object> getCodeAndCityFromOffices();
 
-    @Query("SELECT o.phone, o.city FROM Office o WHERE o.country = :country")
-    List<Object> getCityAndNumberBySpain (@Param("country") String country);
+    //2.
+    @Query("SELECT o.city, o.phone FROM Office o WHERE o.country = :country")
+    List<Object> getCityAndNumberByCountry (@Param("country") String country);
 
 
 

@@ -39,5 +39,46 @@ public class OrderServiceImpl implements OrderService {
         return orderDTO;
     }
 
+    @Override
+    public List<Object> getStates() {
+        List<Object> states = orderRepository.getStates();
+        return states;
+    }
+
+    @Override
+    public List<Object> getOrdersDeliveredAfterExpected() {
+        List<Object> orders = orderRepository.getOrdersDeliveredAfterExpected();
+
+        return orders;
+    }
+
+    @Override
+    public List<Object> getOrdersInDelivery(int days) {
+        List<Object> orders = orderRepository.getOrdersInDelivery(days);
+        return orders;
+    }
+
+    @Override
+    public List<OrderDTO> getOrdersByStateAndYear(String state, int year) {
+        List<Order> orders = orderRepository.getOrdersByStateAndYear(state, year);
+        List<OrderDTO> orderDTOs = new ArrayList<>();
+        orders.forEach(order -> {
+            OrderDTO orderDTO = OrderDTO.toDTO(order);
+            orderDTOs.add(orderDTO);
+        });
+        return orderDTOs;
+    }
+
+    @Override
+    public List<OrderDTO> getOrdersByStateAndMonth(String state, int month) {
+        List<Order> orders = orderRepository.getOrdersByStateAndMonth(state, month);
+        List<OrderDTO> orderDTOs = new ArrayList<>();
+        orders.forEach(order -> {
+            OrderDTO orderDTO = OrderDTO.toDTO(order);
+            orderDTOs.add(orderDTO);
+        });
+        return orderDTOs;
+    }
+
 
 }
