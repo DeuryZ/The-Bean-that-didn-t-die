@@ -12,4 +12,5 @@ public interface OfficeService {
     List<Object>getCodeAndCityFromOffices();
     List<Object>getCityAndNumberByCountry(String country);
     List<Object>getAddressByCity(String city);
+//    List<OfficeDTO>findOfficesWithoutEmployeesRepresentingFrutalesClients();
 }

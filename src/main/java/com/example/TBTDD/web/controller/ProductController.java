@@ -34,4 +34,9 @@ public class ProductController {
         return productService.getProductByGamaAndStock(rangeProductId, quantityInStock);
     }
 
+    @RequestMapping("/findProductsWithoutOrder")
+    public List<ProductDTO> getProductsWithoutOrder() {
+        return productService.getProductsWithoutOrder();
+    }
+
 }

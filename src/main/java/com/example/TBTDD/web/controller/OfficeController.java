@@ -50,5 +50,8 @@ public class OfficeController {
         return officeService.getAddressByCity(city);
     }
 
-
+//    @GetMapping("/findOfficesWithoutEmployeesRepresentingFrutalesClients")
+//    public List<OfficeDTO> findOfficesWithoutEmployeesRepresentingFrutalesClients(){
+//        return officeService.findOfficesWithoutEmployeesRepresentingFrutalesClients();
+//    }
 }

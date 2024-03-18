@@ -9,4 +9,5 @@ public interface ProductService {
     ProductDTO getProductById(String productId);
     List<ProductDTO> findAllProducts();
     List<ProductDTO> getProductByGamaAndStock(String rangeProductId, short quantityInStock);
+    List<ProductDTO> getProductsWithoutOrder();
 }

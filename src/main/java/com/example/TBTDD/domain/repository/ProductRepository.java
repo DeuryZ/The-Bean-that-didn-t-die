@@ -14,7 +14,9 @@ public interface ProductRepository extends JpaRepository<Product, String> {
     @Query("SELECT p FROM Product p WHERE p.rangeProduct = :rangeProduct AND p.quantityInStock >= :quantityInStock ORDER BY p.salePrice DESC")
     List<Product> getProductByGamaAndStock(@Param("rangeProduct")RangeProduct rangeProduct, @Param("quantityInStock") short quantityInStock);
 
-    //19 from second list
-    @Query("SELECT p FROM Product p WHERE p NOT IN (SELECT o.product FROM Order o)")
+    //19 and 20 from second list
+    @Query("SELECT p FROM Product p WHERE p NOT IN (SELECT oD.id.product FROM OrderDetail oD)")
     List<Product> getProductsWithoutOrder();
+
+
 }

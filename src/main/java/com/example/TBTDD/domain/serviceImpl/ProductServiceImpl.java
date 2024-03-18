@@ -58,5 +58,15 @@ public class ProductServiceImpl implements ProductService {
         return productDTOs;
     }
 
+    @Override
+    public List<ProductDTO> getProductsWithoutOrder() {
+        List<ProductDTO> productDTOs = new ArrayList<>();
+        List<Product> products = productRepository.getProductsWithoutOrder();
+        products.forEach(product -> {
+            ProductDTO productDTO = ProductDTO.toDTO(product);
+            productDTOs.add(productDTO);
+        });
+        return productDTOs;
+    }
 
 }

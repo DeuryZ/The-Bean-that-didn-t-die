@@ -56,4 +56,12 @@ public class OfficeServiceImpl implements OfficeService {
         return officeRepository.getAddressByCity(city);
     }
 
+//    @Override
+//    public List<OfficeDTO> findOfficesWithoutEmployeesRepresentingFrutalesClients() {
+//        List<Office> offices = officeRepository.findOfficesWithoutEmployeesRepresentingFrutalesClients();
+//        List<OfficeDTO> officeDTOs = new ArrayList<>();
+//        offices.forEach(office -> officeDTOs.add(OfficeDTO.toDTO(office)));
+//        return officeDTOs;
+//    }
+
 }
