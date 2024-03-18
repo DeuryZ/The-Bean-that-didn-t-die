@@ -8,12 +8,22 @@ import java.time.LocalDate;
 
 public class PaymentDTO {
     private String transactionId;
-    private Client client;
+    private int clientId;
+    private String clientName;
     private String paymentMethod;
     private LocalDate date;
     private BigDecimal total;
 
     public PaymentDTO() {
+    }
+
+    public PaymentDTO(String transactionId, int clientId, String clientName, String paymentMethod, LocalDate date, BigDecimal total) {
+        this.transactionId = transactionId;
+        this.clientId = clientId;
+        this.clientName = clientName;
+        this.paymentMethod = paymentMethod;
+        this.date = date;
+        this.total = total;
     }
 
     public String getTransactionId() {
@@ -24,12 +34,20 @@ public class PaymentDTO {
         this.transactionId = transactionId;
     }
 
-    public Client getClient() {
-        return client;
+    public int getClientId() {
+        return clientId;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
+    }
+
+    public String getClientName() {
+        return clientName;
+    }
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
     }
 
     public String getPaymentMethod() {
@@ -55,32 +73,22 @@ public class PaymentDTO {
     public void setTotal(BigDecimal total) {
         this.total = total;
     }
-
-    @Override
-    public String toString() {
-        return "PaymentDTO{" +
-                "transactionId='" + transactionId + '\'' +
-                ", client=" + client +
-                ", paymentMethod='" + paymentMethod + '\'' +
-                ", date=" + date +
-                ", total=" + total +
-                '}';
-    }
-
-    public static PaymentDTO toDTO(com.example.TBTDD.persistence.entity.Payment payment) {
+    public static PaymentDTO toDTO(Payment payment){
         PaymentDTO paymentDTO = new PaymentDTO();
         paymentDTO.setTransactionId(payment.getTransactionId());
-        paymentDTO.setClient(payment.getClient());
+        paymentDTO.setClientId(payment.getClient().getClientId());
+        paymentDTO.setClientName(payment.getClient().getClientName());
         paymentDTO.setPaymentMethod(payment.getPaymentMethod());
         paymentDTO.setDate(payment.getDate());
         paymentDTO.setTotal(payment.getTotal());
         return paymentDTO;
     }
-
-    public static Payment toEntity(PaymentDTO paymentDTO) {
+    public static Payment toEntity(PaymentDTO paymentDTO){
         Payment payment = new Payment();
         payment.setTransactionId(paymentDTO.getTransactionId());
-        payment.setClient(paymentDTO.getClient());
+        Client client = new Client();
+        client.setClientId(paymentDTO.getClientId());
+        payment.setClient(client);
         payment.setPaymentMethod(paymentDTO.getPaymentMethod());
         payment.setDate(paymentDTO.getDate());
         payment.setTotal(paymentDTO.getTotal());

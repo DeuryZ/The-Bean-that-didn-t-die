@@ -11,4 +11,5 @@ public interface OfficeService {
     OfficeDTO getOfficeById(String officeId);
     List<Object>getCodeAndCityFromOffices();
     List<Object>getCityAndNumberByCountry(String country);
+    List<Object>getAddressByCity(String city);
 }

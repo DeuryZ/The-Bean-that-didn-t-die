@@ -67,5 +67,84 @@ public class ClientServiceImpl implements ClientService {
         return clientDTOs;
     }
 
+    @Override
+    public List<Object> findAllClientsWithSalesRep() {
+        List<Object> clients = clientRepository.findAllClientsWithSalesRep();
+        return clients;
+    }
+
+    @Override
+    public List<Object> findAllClientsWithSalesRepIfPayment() {
+        List<Object> clients = clientRepository.findAllClientsWithSalesRepIfPayment();
+        return clients;
+    }
+
+    @Override
+    public List<Object> findAllClientsWithSalesRepWithoutPayment() {
+        List<Object> clients = clientRepository.findAllClientsWithSalesRepWithoutPayment();
+        return clients;
+    }
+
+    @Override
+    public List<Object> findAllClientsWithSalesRepAndOfficeIfPayment() {
+        List<Object> clients = clientRepository.findAllClientsWithSalesRepAndOfficeIfPayment();
+        return clients;
+    }
+
+    @Override
+    public List<Object> findAllClientsWithSalesRepAndOfficeWithoutPayment() {
+        List<Object> clients = clientRepository.findAllClientsWithSalesRepAndOfficeWithoutPayment();
+        return clients;
+    }
+
+    @Override
+    public List<Object> findAllClientsWithSalesRepAndOffice() {
+        List<Object> clients = clientRepository.findAllClientsWithSalesRepAndOffice();
+        return clients;
+    }
+
+    @Override
+    public List<ClientDTO> findClientsWithPendingOrdersLaterThanExpected() {
+        List<Client> clients = clientRepository.findClientsWithPendingOrdersLaterThanExpected();
+        List<ClientDTO> clientDTOs = new ArrayList<>();
+        clients.forEach(client -> {
+            ClientDTO clientDTO = ClientDTO.toDTO(client);
+            clientDTOs.add(clientDTO);
+        });
+        return clientDTOs;
+    }
+
+    @Override
+    public List<ClientDTO> findClientsWithoutPayment() {
+        List<Client> clients = clientRepository.findClientsWithoutPayment();
+        List<ClientDTO> clientDTOs = new ArrayList<>();
+        clients.forEach(client -> {
+            ClientDTO clientDTO = ClientDTO.toDTO(client);
+            clientDTOs.add(clientDTO);
+        });
+        return clientDTOs;
+    }
+
+    @Override
+    public List<ClientDTO> findClientsWithoutOrder() {
+        List<Client> clients = clientRepository.findClientsWithoutOrder();
+        List<ClientDTO> clientDTOs = new ArrayList<>();
+        clients.forEach(client -> {
+            ClientDTO clientDTO = ClientDTO.toDTO(client);
+            clientDTOs.add(clientDTO);
+        });
+        return clientDTOs;
+    }
+
+    @Override
+    public List<ClientDTO> findClientsWithoutOrderOrWithoutPayment() {
+        List<Client> clients = clientRepository.findClientsWithoutOrderOrWithoutPayment();
+        List<ClientDTO> clientDTOs = new ArrayList<>();
+        clients.forEach(client -> {
+            ClientDTO clientDTO = ClientDTO.toDTO(client);
+            clientDTOs.add(clientDTO);
+        });
+        return clientDTOs;
+    }
 
 }

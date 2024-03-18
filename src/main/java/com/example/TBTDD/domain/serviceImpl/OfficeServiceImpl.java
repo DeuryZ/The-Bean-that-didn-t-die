@@ -50,4 +50,10 @@ public class OfficeServiceImpl implements OfficeService {
     public List<Object> getCityAndNumberByCountry(String country) {
         return officeRepository.getCityAndNumberByCountry(country);
     }
+
+    @Override
+    public List<Object> getAddressByCity(String city) {
+        return officeRepository.getAddressByCity(city);
+    }
+
 }

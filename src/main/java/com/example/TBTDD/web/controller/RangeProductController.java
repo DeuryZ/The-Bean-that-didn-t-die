@@ -2,6 +2,7 @@ package com.example.TBTDD.web.controller;
 
 import com.example.TBTDD.domain.serviceImpl.RangeProductServiceImpl;
 import com.example.TBTDD.persistence.DTO.RangeProductDTO;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,6 +26,12 @@ public class RangeProductController {
     public RangeProductDTO getRangeProductById(String rangeProductId) {
         return rangeProductService.getRangeProductById(rangeProductId);
     }
+
+    @RequestMapping("/findRangeProductByClientId/{clientId}")
+    public List<RangeProductDTO> findRangeProductByClientId(@PathVariable int clientId) {
+        return rangeProductService.findRangeProductByClientId(clientId);
+    }
+
 
 
 }

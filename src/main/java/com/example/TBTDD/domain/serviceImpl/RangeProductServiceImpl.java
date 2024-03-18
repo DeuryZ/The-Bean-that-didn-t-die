@@ -37,4 +37,15 @@ public class RangeProductServiceImpl implements RangeProductService {
         RangeProductDTO rangeProductDTO = RangeProductDTO.toDTO(rangeProduct);
         return rangeProductDTO;
     }
+
+    @Override
+    public List<RangeProductDTO> findRangeProductByClientId(int clientId) {
+        List<RangeProduct> rangeProducts = rangeProductRepository.findRangeProductByClientId(clientId);
+        List<RangeProductDTO> rangeProductDTOs = new ArrayList<>();
+        rangeProducts.forEach(rangeProduct -> {
+            RangeProductDTO rangeProductDTO = RangeProductDTO.toDTO(rangeProduct);
+            rangeProductDTOs.add(rangeProductDTO);
+        });
+        return rangeProductDTOs;
+    }
 }

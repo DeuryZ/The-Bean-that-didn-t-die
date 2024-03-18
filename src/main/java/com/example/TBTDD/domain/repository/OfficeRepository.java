@@ -17,6 +17,10 @@ public interface OfficeRepository extends JpaRepository<Office, String> {
     @Query("SELECT o.city, o.phone FROM Office o WHERE o.country = :country")
     List<Object> getCityAndNumberByCountry (@Param("country") String country);
 
+    //6 from second list
+    @Query("SELECT o.addressLine1, o.addressLine2 FROM Office o JOIN o.employees e JOIN e.clients c WHERE c.city = :city")
+    List<Object> getAddressByCity(@Param("city") String city);
+
 
 
 }

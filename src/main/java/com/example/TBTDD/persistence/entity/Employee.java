@@ -1,6 +1,9 @@
 package com.example.TBTDD.persistence.entity;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "empleado")
 public class Employee {
@@ -23,6 +26,9 @@ public class Employee {
 
     @Column(name = "email", length = 100)
     private String email;
+
+    @OneToMany(mappedBy = "salesRepEmployeeId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Client> clients = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "codigo_oficina")

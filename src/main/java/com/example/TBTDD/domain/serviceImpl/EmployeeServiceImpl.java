@@ -69,6 +69,51 @@ public class EmployeeServiceImpl implements EmployeeService {
         );
         return employeeDTOS;
     }
+
+    @Override
+    public List<Object> findAllEmployeesWithBoss() {
+        List<Object> employees = employeeRepository.findAllEmployeesWithBoss();
+        return employees;
+    }
+
+    @Override
+    public List<Object> findAllEmployeesWithBossAndBoss() {
+        List<Object> employees = employeeRepository.findAllEmployeesWithBossAndBoss();
+        return employees;
+    }
+
+    @Override
+    public List<EmployeeDTO> findAllEmployeesWithoutOffice() {
+        List<Employee> employees = employeeRepository.findAllEmployeesWithoutOffice();
+        List<EmployeeDTO> employeeDTOS = new ArrayList<>();
+        employees.forEach(
+                employee -> employeeDTOS.add(EmployeeDTO.toDTO(employee))
+        );
+        return employeeDTOS;
+    }
+
+    @Override
+    public List<EmployeeDTO> findAllEmployeesWithoutClients() {
+        List<Employee> employees = employeeRepository.findAllEmployeesWithoutClients();
+        List<EmployeeDTO> employeeDTOS = new ArrayList<>();
+        employees.forEach(
+                employee -> employeeDTOS.add(EmployeeDTO.toDTO(employee))
+        );
+        return employeeDTOS;
+    }
+
+    @Override
+    public List<EmployeeDTO> findAllEmployeesWithoutClientsOrOffice() {
+        List<Employee> employees = employeeRepository.findAllEmployeesWithoutClientsOrOffice();
+        List<EmployeeDTO> employeeDTOS = new ArrayList<>();
+        employees.forEach(
+                employee -> employeeDTOS.add(EmployeeDTO.toDTO(employee))
+        );
+        return employeeDTOS;
+    }
+
+
+
 }
 
 

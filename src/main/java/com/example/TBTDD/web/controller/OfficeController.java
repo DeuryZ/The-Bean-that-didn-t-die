@@ -45,5 +45,10 @@ public class OfficeController {
         return officeService.getCityAndNumberByCountry(country);
     }
 
+    @GetMapping("/getAddressByCity/{city}")
+    public List<Object> getAddressByCity(@PathVariable String city){
+        return officeService.getAddressByCity(city);
+    }
+
 
 }

@@ -20,4 +20,25 @@ public interface EmployeeRepository extends JpaRepository<Employee, String> {
     //5.
     @Query("SELECT e FROM Employee e WHERE e.jobTitle <> :jobTitle")
     List<Employee> findDifferentByJobTitle(@Param("jobTitle") String jobTitle);
+
+    //8 from second list
+    @Query("SELECT e.employeeName, j.employeeName FROM Employee e LEFT JOIN e.reportsTo j")
+    List<Object> findAllEmployeesWithBoss();
+
+    //9 from second list
+    @Query("SELECT e.employeeName, j.employeeName, k.employeeName FROM Employee e LEFT JOIN e.reportsTo j LEFT JOIN j.reportsTo k")
+    List<Object> findAllEmployeesWithBossAndBoss();
+
+    //15 from second list
+    @Query("SELECT e FROM Employee e WHERE e NOT IN (SELECT DISTINCT o.employees FROM Office o)")
+    List<Employee> findAllEmployeesWithoutOffice();
+
+    //16 from second list
+    @Query("SELECT e FROM Employee e WHERE e NOT IN (SELECT DISTINCT c.salesRepEmployeeId FROM Client c)")
+    List<Employee> findAllEmployeesWithoutClients();
+
+    //18 from second list
+    @Query("SELECT e FROM Employee e WHERE e NOT IN (SELECT DISTINCT o.employees FROM Office o) OR e NOT IN (SELECT DISTINCT c.salesRepEmployeeId FROM Client c)")
+    List<Employee> findAllEmployeesWithoutClientsOrOffice();
+
 }
