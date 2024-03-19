@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="front.css">
-
+    <script src="app.js" async type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Login</title>
 </head>
 <body>
-    <div class="login-container">
+    <div class="login-container" id="login-register">
         <div class="login-content">
           <div class="login-content_header">
             <span class="logo">
@@ -18,7 +19,7 @@
             <h2>The Bean that didn't Die</h2>
           </div>
           <div>
-            <form class="login-form" action="/main.html">
+            <form class="login-form" action="/frontend/main.html" id="loginForm">
               <input type="email" placeholder="email">
               <input type="password" placeholder="password">
               <input type="submit">
