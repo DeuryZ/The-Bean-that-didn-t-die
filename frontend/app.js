@@ -49,8 +49,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
     //register a user and login
-    let registerForm = document.querySelector("#registerForm");
-    registerForm.addEventListener("submit", async (e) => {
+    let loginRegister = document.querySelector(".login-form");
+    loginRegister.addEventListener("submit", async (e) => {
         e.preventDefault();
         const form = e.target;
         if (form.id === "registerForm") {
@@ -62,6 +62,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     "email":email,
                     "password":password
                 }
+                
                 const response = await fetch("http://localhost:8080/admin/save", {
                     method: "POST",
                     headers: {
@@ -82,25 +83,31 @@ document.addEventListener("DOMContentLoaded", async () => {
         // login a user
 
         if (form.id === "loginForm") {
-
             const email = form.querySelector("input[type='email']").value;
             const password = form.querySelector("input[type='password']").value;
-            const data = {
-                "email":email,
-                "password":password
+            const url = `http://localhost:8080/login?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`;
+        
+            try {
+                const response = await fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                });
+        
+                if (!response.ok) {
+                    throw new Error("Error fetching data");
+                }
+        
+                const result = await response.json();
+                console.log(result);
+                showSuccessAlert('User logged in successfully');
+            } catch (error) {
+                console.error(error);
+                showSuccessAlert('Error logging in user');
             }
-            const response = await fetch("http://localhost:8080/admin/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(data)
-            });
-            const result = await response.json();
-            console.log(result);
-            showSuccessAlert('User logged in successfully');
-
         }
+        
 
     });
 
