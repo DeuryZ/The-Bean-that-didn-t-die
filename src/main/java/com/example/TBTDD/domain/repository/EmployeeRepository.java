@@ -41,4 +41,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, String> {
     @Query("SELECT e FROM Employee e WHERE e NOT IN (SELECT DISTINCT o.employees FROM Office o) OR e NOT IN (SELECT DISTINCT c.salesRepEmployeeId FROM Client c)")
     List<Employee> findAllEmployeesWithoutClientsOrOffice();
 
+    // 1 Third List
+    @Query("SELECT COUNT(e) FROM Employee e")
+    List<Employee> countTotalEmployees();
+
 }
