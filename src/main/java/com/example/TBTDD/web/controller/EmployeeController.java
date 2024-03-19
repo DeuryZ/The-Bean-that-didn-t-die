@@ -71,7 +71,7 @@ public class EmployeeController {
         return employeeService.findAllEmployeesWithoutClientsOrOffice();
     }
     @GetMapping("/total")
-    public List<EmployeeDTO> getTotalEmployees() {
+    public int getTotalEmployees() {
         return employeeService.countTotalEmployees();
     }
 

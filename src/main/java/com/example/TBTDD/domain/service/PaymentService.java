@@ -9,4 +9,5 @@ public interface PaymentService {
     PaymentDTO getPaymentById(String paymentId);
     List<PaymentDTO> getPaymentsByTypeAndYearOrganized(int year, String paymentType);
     List<Object> getPaymentMethods();
+    Double findAveragePaymentAmountIn2009();
 }

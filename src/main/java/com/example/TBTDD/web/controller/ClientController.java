@@ -98,7 +98,10 @@ public class ClientController {
     public List<ClientDTO> findClientsWithoutOrderAndWithoutPayment() {
         return clientService.findClientsWithoutOrderOrWithoutPayment();
     }
-
+    @GetMapping("/count-by-country")
+    public List<Object[]> countClientsByCountry() {
+        return clientService.countClientsByCountry();
+    }
 
 
 }

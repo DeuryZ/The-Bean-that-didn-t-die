@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -112,14 +113,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List<EmployeeDTO> countTotalEmployees() {
-        List<Employee> employees=  employeeRepository.countTotalEmployees();
-        List<EmployeeDTO> employeeDTOS = new ArrayList<>();
-        employees.forEach(
-                employee -> employeeDTOS.add(EmployeeDTO.toDTO((employee)))
-        );
-        return employeeDTOS;
+    public int countTotalEmployees() {
+        return employeeRepository.findAllEmployees();
     }
+
 
 
 }

@@ -61,5 +61,9 @@ public interface ClientRepository extends JpaRepository<Client, String> {
     @Query("SELECT c FROM Client c WHERE c NOT IN (SELECT DISTINCT o.client FROM Order o) OR c NOT IN (SELECT DISTINCT p.client FROM Payment p)")
     List<Client> findClientsWithoutOrderOrWithoutPayment();
 
+    //2 from Third List
+    @Query("SELECT c.country, COUNT(c) FROM Client c GROUP BY c.country")
+    List<Object[]> countClientsByCountry();
+
 
 }

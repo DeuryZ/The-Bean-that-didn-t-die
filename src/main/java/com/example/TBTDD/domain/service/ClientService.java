@@ -21,4 +21,5 @@ public interface ClientService {
     List<ClientDTO> findClientsWithoutOrder();
     List<ClientDTO> findClientsWithoutOrderOrWithoutPayment();
 
+    List<Object[]> countClientsByCountry();
 }

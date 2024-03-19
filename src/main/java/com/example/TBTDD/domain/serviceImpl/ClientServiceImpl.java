@@ -147,4 +147,10 @@ public class ClientServiceImpl implements ClientService {
         return clientDTOs;
     }
 
+    @Override
+    public List<Object[]> countClientsByCountry() {
+        return clientRepository.countClientsByCountry();
+}
+
+
 }

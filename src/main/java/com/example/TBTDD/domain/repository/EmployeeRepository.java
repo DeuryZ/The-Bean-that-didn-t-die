@@ -43,6 +43,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, String> {
 
     // 1 Third List
     @Query("SELECT COUNT(e) FROM Employee e")
-    List<Employee> countTotalEmployees();
+    int findAllEmployees();
+
 
 }
