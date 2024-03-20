@@ -21,6 +21,9 @@ public interface PaymentRepository extends JpaRepository<Payment, String> {
             "FROM Payment p " +
             "WHERE YEAR(p.date) = 2009")
     Double findAveragePaymentAmountIn2009();
-
-
+    //Muestre la suma total de todos los pagos que se realizaron para cada uno de los años que aparecen en la tabla pagos.
+    @Query(value = "SELECT YEAR(p.fecha_pago) AS year, SUM(p.total) AS totalAmount\n" +
+            "FROM pago p\n" +
+            "GROUP BY YEAR(p.fecha_pago);\n",nativeQuery = true)
+    List<Object[]> getTotalPaymentsByYear();
 }

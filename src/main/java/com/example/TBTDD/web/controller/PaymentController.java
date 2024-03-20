@@ -46,4 +46,9 @@ public class PaymentController {
         return paymentService.findAveragePaymentAmountIn2009();
     }
 
+    @GetMapping("/total-by-year")
+    public List<Object[]> getTotalPaymentsByYear() {
+        return paymentService.getTotalPaymentsByYear();
+    }
+
 }
