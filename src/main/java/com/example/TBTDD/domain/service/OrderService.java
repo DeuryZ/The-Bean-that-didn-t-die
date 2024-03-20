@@ -12,4 +12,9 @@ public interface OrderService {
     List<Object> getOrdersInDelivery(int days);
     List<OrderDTO> getOrdersByStateAndYear(String state, int year);
     List<OrderDTO> getOrdersByStateAndMonth(String state, int month);
+    List<Object[]> amountOrderState();
+    List<Object[]> findFirstAndLastOrderDatesByClient();
+    List<Object[]> sumTotalQuantityByOrder();
+
+
 }

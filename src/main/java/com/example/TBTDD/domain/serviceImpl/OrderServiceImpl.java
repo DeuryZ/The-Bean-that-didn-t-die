@@ -80,5 +80,17 @@ public class OrderServiceImpl implements OrderService {
         return orderDTOs;
     }
 
+    @Override
+    public List<Object[]> amountOrderState() {
+        return orderRepository.amountOrderState();
+    }
 
+    @Override
+    public List<Object[]> findFirstAndLastOrderDatesByClient() {
+        return orderRepository.findFirstAndLastOrderDatesByClient();
+    }
+    @Override
+    public List<Object[]> sumTotalQuantityByOrder() {
+        return orderRepository.sumTotalQuantityByOrder();
+    }
 }

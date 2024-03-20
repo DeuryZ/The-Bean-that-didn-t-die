@@ -175,7 +175,7 @@ private BigDecimal creditLimit;
         clientDTO.setContactLastName(client.getContactLastName());
         clientDTO.setPhone(client.getPhone());
         clientDTO.setFax(client.getFax());
-        clientDTO.setAddressLine(client.getAddressLine1());
+        clientDTO.setAddressLine(client.getAddressLine1()); // Corregido aquí
         clientDTO.setAddressLine2(client.getAddressLine2());
         clientDTO.setCity(client.getCity());
         clientDTO.setRegion(client.getRegion());
@@ -184,6 +184,7 @@ private BigDecimal creditLimit;
         clientDTO.setCreditLimit(client.getCreditLimit());
         return clientDTO;
     }
+
 
     public static Client toEntity(ClientDTO clientDTO) {
         Client client = new Client();

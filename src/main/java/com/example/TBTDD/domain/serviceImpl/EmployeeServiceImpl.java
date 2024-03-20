@@ -117,7 +117,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.findAllEmployees();
     }
 
-
+    @Override
+    public List<Object[]> countClientsPerEmployee() {
+        return employeeRepository.countClientsPerEmployee();
+    }
 
 }
 

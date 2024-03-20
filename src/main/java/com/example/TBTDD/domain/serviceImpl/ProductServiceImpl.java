@@ -68,5 +68,19 @@ public class ProductServiceImpl implements ProductService {
         });
         return productDTOs;
     }
+    @Override
+    public List<ProductDTO> productoExpensiveAndCheap() {
+        List<ProductDTO> productDTOS = new ArrayList<>();
+        List<Product> products = productRepository.productoExpensiveAndCheap();
+        products.forEach(product -> {
+            ProductDTO productDTO = ProductDTO.toDTO(product);
+            productDTOS.add(productDTO);
+        });
+        return productDTOS;
+    }
+//    @Override
+//    public Object[] getBillingHistory() {
+//        return orderRepository.getBillingHistory();
+//    }
 
-}
+    }

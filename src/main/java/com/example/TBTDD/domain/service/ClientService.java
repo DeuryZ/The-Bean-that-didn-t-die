@@ -22,4 +22,10 @@ public interface ClientService {
     List<ClientDTO> findClientsWithoutOrderOrWithoutPayment();
 
     List<Object[]> countClientsByCountry();
+
+    long countClients();
+    long countClientsInMadrid();
+    List<Object[]> countClientsByCityStartingWithM();
+    long countClientsWithoutSalesRepresentative();
+//    List<ClientDTO> findClientsWithOrdersButNoPayments();
 }

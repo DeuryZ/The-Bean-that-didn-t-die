@@ -147,10 +147,38 @@ public class ClientServiceImpl implements ClientService {
         return clientDTOs;
     }
 
+
     @Override
     public List<Object[]> countClientsByCountry() {
         return clientRepository.countClientsByCountry();
 }
 
+    @Override
+    public long countClients() {
+        return clientRepository.countClients();
+    }
+    @Override
+    public long countClientsInMadrid() {
+        return clientRepository.countClientsInMadrid();
+    }
+    @Override
+    public List<Object[]> countClientsByCityStartingWithM() {
+        return clientRepository.countClientsByCityStartingWithM();
+    }
 
+    @Override
+    public long countClientsWithoutSalesRepresentative() {
+        return clientRepository.countClientsWithoutSalesRepresentative();
+    }
+//    @Override
+//    public List<ClientDTO> findClientsWithOrdersButNoPayments() {
+//        List<Client> clients = clientRepository.findClientsWithOrdersButNoPayments();
+//        List<ClientDTO> clientDTOs = new ArrayList<>();
+//        clients.forEach(client -> {
+//            ClientDTO clientDTO = ClientDTO.toDTO(client);
+//            clientDTOs.add(clientDTO);
+//        });
+//        return clientDTOs;
+//
+//    }
 }

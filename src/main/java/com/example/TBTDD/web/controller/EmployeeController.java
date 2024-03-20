@@ -75,4 +75,9 @@ public class EmployeeController {
         return employeeService.countTotalEmployees();
     }
 
+
+    @GetMapping("/clients-per-employee")
+    public List<Object[]> countClientsPerEmployee() {
+        return employeeService.countClientsPerEmployee();
+    }
 }
