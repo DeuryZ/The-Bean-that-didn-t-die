@@ -5,12 +5,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 	<link rel="stylesheet" href="style.css">
-	<script src="main.js" async></script>
-	<script src="app.js" defer type="module"></script>
+	<script src="main.js" async type="module"></script>
+	<script src="functionsImpl/clientImpl.js" async type="module"></script>
 	<title>TBTTD</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Allison&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allison&display=swap" rel="stylesheet">
 </head>
 <body>
 	<!-- SIDEBAR -->
@@ -19,7 +19,16 @@
             <div class="spinner"></div>  The Bean that didn't die</a>
 		<ul class="side-menu">
 			<li><a href="#" class="active"><i class='bx bxs-dashboard icon' ></i> Start Menu</a></li>
-			<li class="divider" data-text="Serch">Main</li>
+			<li class="divider" data-text="Search">Main</li>
+			<li>
+				<a href="#"><i class='bx bxs-inbox icon' ></i> Queries <i class='bx bx-chevron-right icon-right' ></i></a>
+				<ul class="side-dropdown">
+					<li id = "getAllClients"><a a href="">Get all clients</a></li>
+					<li><a href="/SearchQueris/multiTable.html">multi-table queries</a></li>
+					<li><a href="/SearchQueris/summaryQueries.html">summary queries</a></li>
+				
+				</ul>
+			</li>
 			<li>
 				<a href="#"><i class='bx bxs-inbox icon' ></i> Queries <i class='bx bx-chevron-right icon-right' ></i></a>
 				<ul class="side-dropdown">
@@ -28,7 +37,16 @@
 					<li><a href="/SearchQueris/summaryQueries.html">summary queries</a></li>
 				
 				</ul>
-			
+			</li>
+			<li>
+				<a href="#"><i class='bx bxs-inbox icon' ></i> Queries <i class='bx bx-chevron-right icon-right' ></i></a>
+				<ul class="side-dropdown">
+					<li><a href="/SearchQueris/OnTable.html">Queries on a table</a></li>
+					<li><a href="/SearchQueris/multiTable.html">multi-table queries</a></li>
+					<li><a href="/SearchQueris/summaryQueries.html">summary queries</a></li>
+				
+				</ul>
+			</li>
 	</section>
 	<!-- SIDEBAR -->
  
@@ -63,53 +81,11 @@
 				<li class="divider">/</li>
 				<li><a href="#" class="active">About us </a></li>
 			</ul>
-            
+            <div class="search">
+				<input type="text" id="searchInput" placeholder="Search clients">
+			</div>
 			<div class="info-data">
-				<div class="card">
-					<div class="head">
-						<div>
-							<h2>1</h2>
-							<p>Traffic</p>
-						</div>
-						<i class='bx bx-trending-up icon' ></i>
-					</div>
-					<span class="progress" data-value="40%"></span>
-					<span class="label">40%</span>
-                    
-				</div>
-				<div class="card">
-					<div class="head">
-						<div>
-							<h2>234</h2>
-							<p>Sales</p>
-						</div>
-						<i class='bx bx-trending-down icon down' ></i>
-					</div>
-					<span class="progress" data-value="60%"></span>
-					<span class="label">60%</span>
-				</div>
-				<div class="card">
-					<div class="head">
-						<div>
-							<h2>465</h2>
-							<p>Pageviews</p>
-						</div>
-						<i class='bx bx-trending-up icon' ></i>
-					</div>
-					<span class="progress" data-value="30%"></span>
-					<span class="label">30%</span>
-				</div>
-				<div class="card">
-					<div class="head">
-						<div>
-							<h2>235</h2>
-							<p>Visitors</p>
-						</div>
-						<i class='bx bx-trending-up icon' ></i>
-					</div>
-					<span class="progress" data-value="80%"></span>
-					<span class="label">80%</span>
-				</div>
+				
 			</div>
 			<div class="data">
 				<div class="content-data">

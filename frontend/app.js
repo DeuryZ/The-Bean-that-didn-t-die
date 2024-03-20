@@ -70,8 +70,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     },
                     body: JSON.stringify(data)
                 });
-                const result = await response.json();
-                console.log(result);
+                console.log(response);
                 showSuccessAlert('User registered successfully');
                 
             } catch (error) {
@@ -99,8 +98,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                     throw new Error("Error fetching data");
                 }
         
-                const result = await response.json();
-                console.log(result);
+                const token = await response.text(); // Obtenemos el token directamente como texto
+                console.log(token);
+                sessionStorage.setItem("", token.trim());
                 showSuccessAlert('User logged in successfully');
             } catch (error) {
                 console.error(error);
