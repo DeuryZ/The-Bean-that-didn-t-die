@@ -1,10 +1,22 @@
 //------------------- FUNCTIONS -------------------
 
 import { getToken } from "../functions/getToken.js";
-import { getAllClients } from "../functions/client.js";
+import { getAllClients } from "../functions/oneTable.js";
+import { getCodeAndCityFromOffices } from "../functions/oneTable.js";
+import { getCityAndNumberByCountry } from "../functions/oneTable.js";
 
 let getAll = document.querySelector('#getAllClients');
 let contentData = document.querySelector('.info-data');
+let searchBtn = document.querySelector('.search-button');
+let searchContent = document.querySelector('#search');
+let searchImput = document.querySelector('#searchImput');
+
+searchBtn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    if(e.target.id === 'searchAllById') {
+        
+    }
+})
 getAll.addEventListener('click', async (e) => {
 	e.preventDefault();
 	if(getToken()) {
@@ -27,6 +39,43 @@ getAll.addEventListener('click', async (e) => {
 
     }else {
         console.log("No hay token");
+    }
+})
+
+let getCodeAndCityFromOfficesBtn = document.querySelector('#getCodeAndCityFromOffices');
+
+getCodeAndCityFromOfficesBtn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    if(getToken()) {
+        let codeAndCity = await getCodeAndCityFromOffices(getToken());
+        contentData.innerHTML = "";
+        codeAndCity.forEach((element) => {
+            console.log(element);
+            contentData.insertAdjacentHTML("beforeend", `
+            <div class="card">
+                <div class="head">
+                    <div>
+                        <i class="bx bx-desktop"></i>
+                        <h2>${element[0]}</h2>
+                        <p>${element[1]}</p>
+                    </div>
+                </div>
+            </div>
+            `)
+        })
+    }else {
+        console.log("No hay token");
+    }
+})
+
+let getCityAndNumberByCountryBtn = document.querySelector('#getCityAndNumberByCountry');
+
+getCityAndNumberByCountryBtn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    
+    if(getToken()) {
+
+        let cityAndNumber = await getCityAndNumberByCountry(getToken(), country);
     }
 })
 

@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         
                 const token = await response.text(); // Obtenemos el token directamente como texto
                 console.log(token);
-                sessionStorage.setItem("", token.trim());
+                sessionStorage.setItem("jwtToken", token.trim());
                 showSuccessAlert('User logged in successfully');
             } catch (error) {
                 console.error(error);
