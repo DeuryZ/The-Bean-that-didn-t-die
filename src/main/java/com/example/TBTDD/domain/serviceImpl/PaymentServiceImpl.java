@@ -54,4 +54,15 @@ public class PaymentServiceImpl implements PaymentService {
     public List<Object> getPaymentMethods() {
         return paymentRepository.getPaymentMethods();
     }
+
+    @Override
+    public Double findAveragePaymentAmountIn2009() {
+        return paymentRepository.findAveragePaymentAmountIn2009();
+    }
+
+    @Override
+    public List<Object[]> getTotalPaymentsByYear() {
+        return paymentRepository.getTotalPaymentsByYear();
+    }
+
 }

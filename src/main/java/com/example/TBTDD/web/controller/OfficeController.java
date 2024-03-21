@@ -51,7 +51,7 @@ public class OfficeController {
     }
 
 //    @GetMapping("/findOfficesWithoutEmployeesRepresentingFrutalesClients")
-//    public List<OfficeDTO> findOfficesWithoutEmployeesRepresentingFrutalesClients(){
+//    public List<Object> findOfficesWithoutEmployeesRepresentingFrutalesClients(){
 //        return officeService.findOfficesWithoutEmployeesRepresentingFrutalesClients();
 //    }
 }

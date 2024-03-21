@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -112,7 +112,15 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeDTOS;
     }
 
+    @Override
+    public int countTotalEmployees() {
+        return employeeRepository.findAllEmployees();
+    }
 
+    @Override
+    public List<Object[]> countClientsPerEmployee() {
+        return employeeRepository.countClientsPerEmployee();
+    }
 
 }
 

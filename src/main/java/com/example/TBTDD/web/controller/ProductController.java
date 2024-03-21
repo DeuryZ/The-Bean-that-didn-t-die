@@ -3,6 +3,7 @@ package com.example.TBTDD.web.controller;
 import com.example.TBTDD.domain.serviceImpl.ProductServiceImpl;
 import com.example.TBTDD.persistence.DTO.ProductDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,5 +39,15 @@ public class ProductController {
     public List<ProductDTO> getProductsWithoutOrder() {
         return productService.getProductsWithoutOrder();
     }
+
+
+    @RequestMapping("/expensive-cheap")
+    public List<ProductDTO> productoExpensiveAndCheap() {
+        return productService.productoExpensiveAndCheap();
+    }
+//    @GetMapping("/history")
+//    public Object[] getBillingHistory() {
+//        return billingService.getBillingHistory();
+//    }
 
 }

@@ -99,6 +99,32 @@ public class ClientController {
         return clientService.findClientsWithoutOrderOrWithoutPayment();
     }
 
+    @GetMapping("/count-by-country")
+    public List<Object[]> countClientsByCountry() {
+        return clientService.countClientsByCountry();
+    }
+    @GetMapping("/count")
+    public long countClients() {
+        return clientService.countClients();
+    }
 
+    @GetMapping("/count-in-madrid")
+    public long countClientsInMadrid() {
+        return clientService.countClientsInMadrid();
+    }
+    @GetMapping("/count-cities-starting-with-m")
+    public List<Object[]> countClientsByCityStartingWithM() {
+        return clientService.countClientsByCityStartingWithM();
+    }
+
+    @GetMapping("/without-sales-representative")
+    public long countClientsWithoutSalesRepresentative() {
+        return clientService.countClientsWithoutSalesRepresentative();
+    }
+
+//    @GetMapping("/with-orders-no-payments")
+//    public List<ClientDTO> findClientsWithOrdersButNoPayments() {
+//        return clientService.findClientsWithOrdersButNoPayments();
+//    }
 
 }

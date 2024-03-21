@@ -21,12 +21,24 @@ public interface OfficeRepository extends JpaRepository<Office, String> {
     @Query("SELECT o.addressLine1, o.addressLine2 FROM Office o JOIN o.employees e JOIN e.clients c WHERE c.city = :city")
     List<Object> getAddressByCity(@Param("city") String city);
 
-    //21 from second list
-    //@Query("SELECT o FROM Office o JOIN o.employees e JOIN e.clients c JOIN c.payments p WHERE ")
-//    @Query("SELECT DISTINCT o FROM Office o WHERE o NOT IN " +
-//            "(SELECT DISTINCT e.office FROM Employee e WHERE e IN " +
-//            "(SELECT DISTINCT c.salesRepEmployeeId FROM Client c " +
-//            "WHERE c IN (SELECT DISTINCT p.client FROM Product p WHERE p.rangeProduct = 'Frutales')))")
-//    List<Office> findOfficesWithoutEmployeesRepresentingFrutalesClients();
+
+
+    // 21 From multitable List
+//    @Query("SELECT DISTINCT od.order.client.office.officeCode " +
+//            "FROM OrderDetail od " +
+//            "JOIN od.order.client.office o " +
+//            "JOIN od.order.client c " +
+//            "JOIN od.order p " +
+//            "JOIN od.product pr " +
+//            "WHERE pr.rangeProduct.gama = 'Frutales' " +
+//            "AND c.salesRepEmployeeId IS NOT NULL " +
+//            "AND o.officeCode IS NOT NULL " +
+//            "AND c.clientId IS NOT NULL " +
+//            "AND p.orderId IS NOT NULL " +
+//            "AND od.id.orderId IS NOT NULL " +
+//            "AND pr.productCode IS NOT NULL")
+//    List<Object> findOfficesWithoutSalesRepresentativesForFrutales();
+
+
 
 }

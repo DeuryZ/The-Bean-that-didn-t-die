@@ -17,4 +17,7 @@ public interface EmployeeService {
     List<EmployeeDTO> findAllEmployeesWithoutOffice();
     List<EmployeeDTO> findAllEmployeesWithoutClients();
     List<EmployeeDTO> findAllEmployeesWithoutClientsOrOffice();
+    int countTotalEmployees();
+    List<Object[]> countClientsPerEmployee();
+
 }

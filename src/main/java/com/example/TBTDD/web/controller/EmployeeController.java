@@ -70,6 +70,14 @@ public class EmployeeController {
     public List<EmployeeDTO> findAllEmployeesWithoutClientsOrOffice() {
         return employeeService.findAllEmployeesWithoutClientsOrOffice();
     }
+    @GetMapping("/total")
+    public int getTotalEmployees() {
+        return employeeService.countTotalEmployees();
+    }
 
 
+    @GetMapping("/clients-per-employee")
+    public List<Object[]> countClientsPerEmployee() {
+        return employeeService.countClientsPerEmployee();
+    }
 }

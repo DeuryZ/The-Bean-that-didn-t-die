@@ -4,6 +4,7 @@ package com.example.TBTDD.web.controller;
 import com.example.TBTDD.domain.serviceImpl.PaymentServiceImpl;
 import com.example.TBTDD.persistence.DTO.PaymentDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,6 +39,16 @@ public class PaymentController {
     @RequestMapping("/getPaymentMethods")
     public List<Object> getPaymentMethods() {
         return paymentService.getPaymentMethods();
+    }
+
+    @GetMapping("/average-payment-2009")
+    public Double findAveragePaymentAmountIn2009() {
+        return paymentService.findAveragePaymentAmountIn2009();
+    }
+
+    @GetMapping("/total-by-year")
+    public List<Object[]> getTotalPaymentsByYear() {
+        return paymentService.getTotalPaymentsByYear();
     }
 
 }

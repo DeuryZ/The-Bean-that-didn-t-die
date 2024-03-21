@@ -1,9 +1,7 @@
 package com.example.TBTDD.domain.serviceImpl;
 
-import com.example.TBTDD.domain.repository.EmployeeRepository;
 import com.example.TBTDD.domain.repository.OfficeRepository;
 import com.example.TBTDD.domain.service.OfficeService;
-import com.example.TBTDD.persistence.DTO.ClientDTO;
 import com.example.TBTDD.persistence.DTO.OfficeDTO;
 import com.example.TBTDD.persistence.entity.Office;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class OfficeServiceImpl implements OfficeService {
@@ -56,12 +55,19 @@ public class OfficeServiceImpl implements OfficeService {
         return officeRepository.getAddressByCity(city);
     }
 
+    @Override
+    public List<Object> findOfficesWithoutEmployeesRepresentingFrutalesClients() {
+        return null;
+    }
+
+
 //    @Override
-//    public List<OfficeDTO> findOfficesWithoutEmployeesRepresentingFrutalesClients() {
-//        List<Office> offices = officeRepository.findOfficesWithoutEmployeesRepresentingFrutalesClients();
-//        List<OfficeDTO> officeDTOs = new ArrayList<>();
-//        offices.forEach(office -> officeDTOs.add(OfficeDTO.toDTO(office)));
-//        return officeDTOs;
+//    public List<Object> findOfficesWithoutEmployeesRepresentingFrutalesClients() {
+//        List<Object> offices = officeRepository.findOfficesWithoutSalesRepresentativesForFrutales();
+//        return offices.stream()
+//                .map(office -> (Object) OfficeDTO.toDTO((Office) office))
+//                .collect(Collectors.toList());
 //    }
+//
 
 }

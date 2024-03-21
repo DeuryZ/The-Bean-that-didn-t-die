@@ -6,10 +6,14 @@ import com.example.TBTDD.persistence.DTO.OrderDetailDTO;
 import com.example.TBTDD.persistence.embeddable.OrderDetailId;
 import com.example.TBTDD.persistence.entity.OrderDetail;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Pageable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class OrderDetailServiceImpl implements OrderDetailService {
@@ -38,4 +42,30 @@ public class OrderDetailServiceImpl implements OrderDetailService {
         OrderDetailDTO orderDetailDTO = OrderDetailDTO.toDTO(orderDetail);
         return orderDetailDTO;
     }
-}
+
+    @Override
+    public List<Object[]> findBestSellingProducts() {
+        return orderDetailRepository.findBestSellingProducts();
+    }
+
+    @Override
+    public Object[] calculateBilling() {
+        return orderDetailRepository.calculateBilling();
+    }
+    @Override
+    public List<Object[]> calculateBillingByProduct() {
+        return orderDetailRepository.calculateBillingByProduct();
+    }
+
+    @Override
+    public List<Object[]> calculateBillingByProductWithOR() {
+        return orderDetailRepository.calculateBillingByProductWithOR();
+    }
+
+    @Override
+    public List<Object[]> showVentsGreaterthan3000() {
+        return orderDetailRepository.showVentsGreaterthan3000();
+    }
+
+
+    }
