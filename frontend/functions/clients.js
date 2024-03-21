@@ -1,13 +1,5 @@
-function createRequestOptions(token) {
-  return {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  }
-}
 
+import { createRequestOptions } from "../functions/getToken.js";
 export function getAllClients(token) {
     const requestOptions = createRequestOptions(token);
     console.log(requestOptions);
@@ -24,9 +16,9 @@ export function getAllClients(token) {
           });    
 }
 
-export function getCodeAndCityFromOffices(token){
+export function getClientById(token, clientId) {
   const requestOptions = createRequestOptions(token);
-  return fetch("http://localhost:8080/offices/getCodeAndCityByOffice", requestOptions)
+  return fetch(`http://localhost:8080/clients/findClientById/${clientId}`, requestOptions)
     .then((response) => {
       if (!response.ok) {
         throw new Error("Error al ejecutar la solicitud");
@@ -36,20 +28,6 @@ export function getCodeAndCityFromOffices(token){
     .catch((error) => {
       console.error("Error:", error);
       throw error;
-    })
+    });
 }
 
-export function getCityAndNumberByCountry(token, country){
-  const requestOptions = createRequestOptions(token);
-  return fetch(`http://localhost:8080/offices/getCityAndNumberByCountry/${country}`, requestOptions)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Error al ejecutar la solicitud");
-      }
-      return response.json();
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      throw error;
-    })
-}

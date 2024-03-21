@@ -6,3 +6,13 @@ export function getToken() {
         return null;
     }
 }
+
+export function createRequestOptions(token) {
+    return {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  }

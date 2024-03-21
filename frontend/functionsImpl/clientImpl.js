@@ -1,24 +1,23 @@
 //------------------- FUNCTIONS -------------------
 
 import { getToken } from "../functions/getToken.js";
-import { getAllClients } from "../functions/oneTable.js";
-import { getCodeAndCityFromOffices } from "../functions/oneTable.js";
-import { getCityAndNumberByCountry } from "../functions/oneTable.js";
+import { getAllClients } from "../functions/clients.js";
+import { getClientById } from "../functions/clients.js";
+
 
 let getAll = document.querySelector('#getAllClients');
 let contentData = document.querySelector('.info-data');
-let searchBtn = document.querySelector('.search-button');
-let searchContent = document.querySelector('#search');
-let searchImput = document.querySelector('#searchImput');
+let searchContent = document.querySelector('.search');
 
-searchBtn.addEventListener('click', async (e) => {
-    e.preventDefault();
-    if(e.target.id === 'searchAllById') {
-        
-    }
-})
+
+
 getAll.addEventListener('click', async (e) => {
 	e.preventDefault();
+    searchContent.innerHTML = "";
+    searchContent.insertAdjacentHTML("beforeend", `
+        <input type="text" id="searchInput" placeholder="Search">
+        <button class ="search-button" id="searchAllById">Search</button>
+    `);
 	if(getToken()) {
         let clients = await getAllClients(getToken());
         console.log(clients);
@@ -37,47 +36,39 @@ getAll.addEventListener('click', async (e) => {
             `)
         })
 
-    }else {
-        console.log("No hay token");
-    }
-})
-
-let getCodeAndCityFromOfficesBtn = document.querySelector('#getCodeAndCityFromOffices');
-
-getCodeAndCityFromOfficesBtn.addEventListener('click', async (e) => {
-    e.preventDefault();
-    if(getToken()) {
-        let codeAndCity = await getCodeAndCityFromOffices(getToken());
-        contentData.innerHTML = "";
-        codeAndCity.forEach((element) => {
-            console.log(element);
-            contentData.insertAdjacentHTML("beforeend", `
-            <div class="card">
-                <div class="head">
-                    <div>
-                        <i class="bx bx-desktop"></i>
-                        <h2>${element[0]}</h2>
-                        <p>${element[1]}</p>
+        // Search by id
+    let searchImput = document.querySelector('#searchInput');
+    let searchBtn = document.querySelector('.search-button');
+    searchBtn.addEventListener('click', async (e) => {
+        e.preventDefault(searchImput.value);
+        if(e.target.id === 'searchAllById') {
+            console.log("");
+            if(getToken()) {
+                let client = await getClientById(getToken(), searchImput.value);
+                contentData.innerHTML = "";
+                contentData.insertAdjacentHTML("beforeend", `
+                <div class="card">
+                    <div class="head">
+                        <div>
+                            <i class="bx bx-user"></i>
+                            <h2>${client.clientId}</h2>
+                            <p>${client.clientName}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            `)
-        })
+                `)
+            }else {
+                console.log("No hay token");
+            }
+        }
+    })
+
     }else {
         console.log("No hay token");
     }
 })
 
-let getCityAndNumberByCountryBtn = document.querySelector('#getCityAndNumberByCountry');
 
-getCityAndNumberByCountryBtn.addEventListener('click', async (e) => {
-    e.preventDefault();
-    
-    if(getToken()) {
-
-        let cityAndNumber = await getCityAndNumberByCountry(getToken(), country);
-    }
-})
 
 
 
