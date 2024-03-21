@@ -22,27 +22,27 @@ public interface ClientRepository extends JpaRepository<Client, String> {
     List<Client> findClientsByCityAndSalesRep(@Param("city") String city, @Param("salesRepEmployeeId1") Employee salesRepEmployeeId1, @Param("salesRepEmployeeId2") Employee salesRepEmployeeId2);
 
     //1 from second list
-    @Query("SELECT c.clientName, CONCAT(e.employeeName,' ', e.employeeLastName1, ' ', e.employeeLastName2) FROM Client c JOIN c.salesRepEmployeeId e")
+    @Query("SELECT DISTINCT c.clientName, CONCAT(e.employeeName,' ', e.employeeLastName1, ' ', e.employeeLastName2) FROM Client c JOIN c.salesRepEmployeeId e")
     List<Object> findAllClientsWithSalesRep();
 
     //2 from second list
-    @Query("SELECT c.clientName, e.employeeName, CONCAT(c.clientName, ' ', e.employeeName) FROM Client c JOIN c.salesRepEmployeeId e JOIN c.payments p")
+    @Query("SELECT DISTINCT c.clientName, CONCAT(e.employeeName,' ', e.employeeLastName1, ' ', e.employeeLastName2) FROM Client c JOIN c.salesRepEmployeeId e JOIN c.payments p")
     List<Object> findAllClientsWithSalesRepIfPayment();
 
     //3 from second list
-    @Query("SELECT c.clientName, e.employeeName, CONCAT(c.clientName, ' ', e.employeeName) FROM Client c JOIN c.salesRepEmployeeId e WHERE c NOT IN (SELECT DISTINCT p.client FROM Payment p)")
+    @Query("SELECT DISTINCT c.clientName, CONCAT(e.employeeName,' ', e.employeeLastName1, ' ', e.employeeLastName2) FROM Client c JOIN c.salesRepEmployeeId e WHERE c NOT IN (SELECT DISTINCT p.client FROM Payment p)")
     List<Object> findAllClientsWithSalesRepWithoutPayment();
 
     //4 from second list
-    @Query("SELECT c.clientName, e.employeeName, CONCAT(c.clientName, ' ', e.employeeName), o.city FROM Client c JOIN c.salesRepEmployeeId e JOIN c.payments p JOIN e.office o")
+    @Query("SELECT DISTINCT c.clientName, CONCAT(e.employeeName,' ', e.employeeLastName1, ' ', e.employeeLastName2), o.city FROM Client c JOIN c.salesRepEmployeeId e JOIN c.payments p JOIN e.office o")
     List<Object> findAllClientsWithSalesRepAndOfficeIfPayment();
 
     //5 from second list
-    @Query("SELECT c.clientName, e.employeeName, CONCAT(c.clientName, ' ', e.employeeName), o.city FROM Client c JOIN c.salesRepEmployeeId e JOIN e.office o WHERE c NOT IN (SELECT DISTINCT p.client FROM Payment p)")
+    @Query("SELECT DISTINCT c.clientName, CONCAT(e.employeeName,' ', e.employeeLastName1, ' ', e.employeeLastName2), o.city FROM Client c JOIN c.salesRepEmployeeId e JOIN e.office o WHERE c NOT IN (SELECT DISTINCT p.client FROM Payment p)")
     List<Object> findAllClientsWithSalesRepAndOfficeWithoutPayment();
 
     //7 from second list
-    @Query("SELECT c.clientName, e.employeeName, o.city FROM Client c JOIN c.salesRepEmployeeId e JOIN e.office o")
+    @Query("SELECT DISTINCT c.clientName, e.CONCAT(e.employeeName,' ', e.employeeLastName1, ' ', e.employeeLastName2), o.city FROM Client c JOIN c.salesRepEmployeeId e JOIN e.office o")
     List<Object> findAllClientsWithSalesRepAndOffice();
 
     //10 from second list

@@ -6,7 +6,22 @@ import { getAllClients,
     findClientsByCountry, 
     findClientsWithPaymentInAYear,
     findClientsByCityAndSalesRep,
-    findAllClientsWithSalesReps } from "../functions/clients.js";
+    findAllClientsWithSalesReps,
+    findAllClientsWithSalesRepIfPayment,
+    findAllClientsWithSalesRepWithoutPayment,
+    findAllClientsWithSalesRepAndOfficeIfPayment,
+    findAllClientsWithSalesRepAndOfficeWithoutPayment,
+    findAllClientsWithSalesRepAndOffice,
+    findClientsWithPendingOrdersLaterThanExpected,
+    findClientsWithoutPayment,
+    findClientsWithoutOrder,
+    findClientsWithoutOrderOrWithoutPayment,
+    countByCountry,
+    count,
+    countInMadrid,
+    countCitiesStartingWithM,
+    withoutSalesRepresentative
+    } from "../functions/clients.js";
 
 //------------------- Selectors -------------------
 let getAll = document.querySelector('#getAllClients');
@@ -30,14 +45,15 @@ let countCitiesStartingWithMSelector = document.querySelector('#countCitiesStart
 let withoutSalesRepresentativeSelector = document.querySelector('#withoutSalesRepresentative');
 
 
-
+//------------------- Containers -------------------
 let contentData = document.querySelector('.info-data');
 let searchContent = document.querySelector('.search');
-
+let title = document.querySelector('.title');
 
 
 getAll.addEventListener('click', async (e) => {
 	e.preventDefault();
+    title.innerHTML = "All clients";
     searchContent.innerHTML = "";
     searchContent.insertAdjacentHTML("beforeend", `
         <input type="text" id="searchInput" placeholder="Search">
@@ -95,6 +111,8 @@ getAll.addEventListener('click', async (e) => {
 findClientsByCountrySelector.addEventListener('click', async (e) => {
     e.preventDefault();
     searchContent.innerHTML = "";
+    contentData.innerHTML = "";
+    title.innerHTML = "Find clients by country";
     searchContent.insertAdjacentHTML("beforeend", `
         <input type="text" id="searchInput" placeholder="Search">
         <button class ="search-button" id="findClientsByCountry">Search</button>
@@ -134,6 +152,8 @@ findClientsByCountrySelector.addEventListener('click', async (e) => {
 findClientsWithPaymentInAYearSelector.addEventListener('click', async (e) => {
     e.preventDefault();
     searchContent.innerHTML = "";
+    contentData.innerHTML = "";
+    title.innerHTML = "Find clients with payment in a year";
     searchContent.insertAdjacentHTML("beforeend", `
         <input type="text" id="searchInput" placeholder="Search">
         <button class ="search-button" id="findClientsWithPaymentInAYear">Search</button>
@@ -173,6 +193,8 @@ findClientsWithPaymentInAYearSelector.addEventListener('click', async (e) => {
 findClientsByCityAndSalesRepSelector.addEventListener('click', async (e) => {
     e.preventDefault();
     searchContent.innerHTML = "";
+    contentData.innerHTML = "";
+    title.innerHTML = "Find clients by city and sales rep";
     searchContent.insertAdjacentHTML("beforeend", `
         <input type="text" id="searchInput" placeholder="City">
         <input type="text" id="searchInput2" placeholder="Sales Rep">
@@ -228,6 +250,8 @@ findClientsByCityAndSalesRepSelector.addEventListener('click', async (e) => {
 findAllClientsWithSalesRepsSelector.addEventListener('click', async (e) => {
     e.preventDefault();
     contentData.innerHTML = "";
+    searchContent.innerHTML = "";
+    title.innerHTML = "All clients with sales reps";
     if(getToken()) {
         let clients = await findAllClientsWithSalesReps(getToken());
         console.log(clients);
@@ -237,8 +261,8 @@ findAllClientsWithSalesRepsSelector.addEventListener('click', async (e) => {
                 <div class="head">
                     <div>
                         <i class="bx bx-user"></i>
-                        <h2>${client.clientName}</h2>
-                        <p>Sales Rep: ${client.salesRepEmployeeId}</p>
+                        <h2>${client[0]}</h2>
+                        <p>Sales Rep: ${client[1]}</p>
                     </div>
                 </div>
             </div>
@@ -246,6 +270,131 @@ findAllClientsWithSalesRepsSelector.addEventListener('click', async (e) => {
         })
     }
 })
+
+findAllClientsWithSalesRepIfPaymentSelector.addEventListener('click', async (e) => {
+    e.preventDefault();
+    contentData.innerHTML = "";
+    searchContent.innerHTML = "";
+    title.innerHTML = "All clients with sales reps with payment";
+    if(getToken()) {
+        let clients = await findAllClientsWithSalesRepIfPayment(getToken());
+        console.log(clients);
+        clients.forEach((client) => {
+            contentData.insertAdjacentHTML("beforeend", `
+            <div class="card">
+                <div class="head">
+                    <div>
+                        <i class="bx bx-user"></i>
+                        <h2>${client[0]}</h2>
+                        <p>Sales Rep: ${client[1]}</p>
+                    </div>
+                </div>
+            </div>
+            `)
+        })
+    }
+})
+
+findAllClientsWithSalesRepWithoutPaymentSelector.addEventListener('click', async (e) => {
+    e.preventDefault();
+    contentData.innerHTML = "";
+    searchContent.innerHTML = "";
+    title.innerHTML = "All clients with sales reps without payment";
+    if(getToken()) {
+        let clients = await findAllClientsWithSalesRepWithoutPayment(getToken());
+        console.log(clients);
+        clients.forEach((client) => {
+            contentData.insertAdjacentHTML("beforeend", `
+            <div class="card">
+                <div class="head">
+                    <div>
+                        <i class="bx bx-user"></i>
+                        <h2>${client[0]}</h2>
+                        <p>Sales Rep: ${client[1]}</p>
+                    </div>
+                </div>
+            </div>
+            `)
+        })
+    }
+})
+
+findAllClientsWithSalesRepAndOfficeIfPaymentSelector.addEventListener('click', async (e) => {
+    e.preventDefault();
+    contentData.innerHTML = "";
+    searchContent.innerHTML = "";
+    title.innerHTML = "All clients with sales reps and office with payment";
+    if(getToken()) {
+        let clients = await findAllClientsWithSalesRepAndOfficeIfPayment(getToken());
+        console.log(clients);
+        clients.forEach((client) => {
+            contentData.insertAdjacentHTML("beforeend", `
+            <div class="card">
+                <div class="head">
+                    <div>
+                        <i class="bx bx-user"></i>
+                        <h2>${client[0]}</h2>
+                        <p>Sales Rep: ${client[1]}</p>
+                        <p>Office city: ${client[2]}</p>
+                    </div>
+                </div>
+            </div>
+            `)
+        })
+    }
+})
+
+findAllClientsWithSalesRepAndOfficeWithoutPaymentSelector.addEventListener('click', async (e) => {
+    e.preventDefault();
+    contentData.innerHTML = "";
+    searchContent.innerHTML = "";
+    title.innerHTML = "All clients with sales reps and office without payment";
+    if(getToken()) {
+        let clients = await findAllClientsWithSalesRepAndOfficeWithoutPayment(getToken());
+        console.log(clients);
+        clients.forEach((client) => {
+            contentData.insertAdjacentHTML("beforeend", `
+            <div class="card">
+                <div class="head">
+                    <div>
+                        <i class="bx bx-user"></i>
+                        <h2>${client[0]}</h2>
+                        <p>Credit Limit: ${client[1]}</p>
+                        <p>Office city: ${client[2]}</p>
+                    </div>
+                </div>
+            </div>
+            `)
+        })
+    }
+})
+
+findAllClientsWithSalesRepAndOfficeSelector.addEventListener('click', async (e) => {
+    e.preventDefault();
+    contentData.innerHTML = "";
+    searchContent.innerHTML = "";
+    title.innerHTML = "All clients with sales reps and office";
+    if(getToken()) {
+        let clients = await findAllClientsWithSalesRepAndOffice(getToken());
+        console.log(clients);
+        clients.forEach((client) => {
+            contentData.insertAdjacentHTML("beforeend", `
+            <div class="card">
+                <div class="head">
+                    <div>
+                        <i class="bx bx-user"></i>
+                        <h2>${client[0]}</h2>
+                        <p>Sales Rep: ${client[1]}</p>
+                        <p>Office city: ${client[2]}</p>
+                    </div>
+                </div>
+            </div>
+            `)
+        })
+    }
+})
+
+
 
 
 let data = {

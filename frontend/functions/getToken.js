@@ -15,4 +15,4 @@ export function createRequestOptions(token) {
         Authorization: `Bearer ${token}`,
       },
     }
-  }
+}
