@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +23,7 @@ public class RangeProductController {
         this.rangeProductService = rangeProductService;
     }
     @Operation(summary = "Get all Range's for the application")
-    @RequestMapping("/all")
+    @GetMapping("/all")
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
     public List<RangeProductDTO> findAllRangeProducts() {
@@ -30,7 +31,7 @@ public class RangeProductController {
     }
 
     @Operation(summary = "Get all Range's by ID for the application")
-    @RequestMapping("/getRangeProductById/{rangeProductId}")
+    @GetMapping("/getRangeProductById/{rangeProductId}")
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
     public RangeProductDTO getRangeProductById(String rangeProductId) {
@@ -38,7 +39,7 @@ public class RangeProductController {
     }
 
     @Operation(summary = "Get all Range's product by client ID for the application")
-    @RequestMapping("/findRangeProductByClientId/{clientId}")
+    @GetMapping("/findRangeProductByClientId/{clientId}")
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
     public List<RangeProductDTO> findRangeProductByClientId(@PathVariable int clientId) {
