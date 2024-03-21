@@ -4,6 +4,8 @@ package com.example.TBTDD.web.controller;
 import com.example.TBTDD.domain.serviceImpl.EmployeeServiceImpl;
 import com.example.TBTDD.domain.serviceImpl.OfficeServiceImpl;
 import com.example.TBTDD.persistence.DTO.OfficeDTO;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/offices")
+@Tag(name = "Office resources")
 public class OfficeController {
     private final OfficeServiceImpl officeService;
 
@@ -24,27 +27,30 @@ public class OfficeController {
         this.officeService = officeService;
         this.employeeService = employeeService;
     }
+    @Operation(summary = "Get all offices for the application")
     @GetMapping("/all")
     public List<OfficeDTO> findAllOffices(){
         return officeService.findAllOffices();
     }
 
-
+    @Operation(summary = "Get all office by id for the application")
     @GetMapping("/getOfficeById/{officeId}")
     public OfficeDTO getOfficeById(@PathVariable String officeId){
         return officeService.getOfficeById(officeId);
     }
 
+    @Operation(summary = "Get all office by id for the application")
     @GetMapping("/getCodeAndCityByOffice")
     public List<Object> getCodeAndCityByOffice(){
         return officeService.getCodeAndCityFromOffices();
     }
 
+    @Operation(summary = "Get city and number by country for the application")
     @GetMapping("/getCityAndNumberByCountry/{country}")
     public List<Object> getCityAndNumberBySpain(@PathVariable String country){
         return officeService.getCityAndNumberByCountry(country);
     }
-
+    @Operation(summary = "Get address by city by for the application")
     @GetMapping("/getAddressByCity/{city}")
     public List<Object> getAddressByCity(@PathVariable String city){
         return officeService.getAddressByCity(city);
