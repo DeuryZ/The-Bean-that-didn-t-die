@@ -1,11 +1,36 @@
 //------------------- FUNCTIONS -------------------
 
 import { getToken } from "../functions/getToken.js";
-import { getAllClients } from "../functions/clients.js";
-import { getClientById } from "../functions/clients.js";
+import { getAllClients, 
+    getClientById, 
+    findClientsByCountry, 
+    findClientsWithPaymentInAYear,
+    findClientsByCityAndSalesRep,
+    findAllClientsWithSalesReps } from "../functions/clients.js";
 
-
+//------------------- Selectors -------------------
 let getAll = document.querySelector('#getAllClients');
+let findClientsByCountrySelector = document.querySelector('#findClientsByCountry');
+let findClientsWithPaymentInAYearSelector = document.querySelector('#findClientsWithPaymentInAYear');
+let findClientsByCityAndSalesRepSelector = document.querySelector('#findClientsByCityAndSalesRep');
+let findAllClientsWithSalesRepsSelector = document.querySelector('#findAllClientsWithSalesReps');
+let findAllClientsWithSalesRepIfPaymentSelector = document.querySelector('#findAllClientsWithSalesRepIfPayment');
+let findAllClientsWithSalesRepWithoutPaymentSelector = document.querySelector('#findAllClientsWithSalesRepWithoutPayment');
+let findAllClientsWithSalesRepAndOfficeIfPaymentSelector = document.querySelector('#findAllClientsWithSalesRepAndOfficeIfPayment');
+let findAllClientsWithSalesRepAndOfficeWithoutPaymentSelector = document.querySelector('#findAllClientsWithSalesRepAndOfficeWithoutPayment');
+let findAllClientsWithSalesRepAndOfficeSelector = document.querySelector('#findAllClientsWithSalesRepAndOffice');
+let findClientsWithPendingOrdersLaterThanExpectedSelector = document.querySelector('#findClientsWithPendingOrdersLaterThanExpected');
+let findClientsWithoutPaymentSelector = document.querySelector('#findClientsWithoutPayment');
+let findClientsWithoutOrderSelector = document.querySelector('#findClientsWithoutOrder');
+let findClientsWithoutOrderOrWithoutPaymentSelector = document.querySelector('#findClientsWithoutOrderOrWithoutPayment');
+let countByCountrySelector = document.querySelector('#countByCountry');
+let countSelector = document.querySelector('#count');
+let countInMadridSelector = document.querySelector('#countInMadrid');
+let countCitiesStartingWithMSelector = document.querySelector('#countCitiesStartingWithM');
+let withoutSalesRepresentativeSelector = document.querySelector('#withoutSalesRepresentative');
+
+
+
 let contentData = document.querySelector('.info-data');
 let searchContent = document.querySelector('.search');
 
@@ -35,7 +60,6 @@ getAll.addEventListener('click', async (e) => {
             </div>
             `)
         })
-
         // Search by id
     let searchImput = document.querySelector('#searchInput');
     let searchBtn = document.querySelector('.search-button');
@@ -68,8 +92,160 @@ getAll.addEventListener('click', async (e) => {
     }
 })
 
+findClientsByCountrySelector.addEventListener('click', async (e) => {
+    e.preventDefault();
+    searchContent.innerHTML = "";
+    searchContent.insertAdjacentHTML("beforeend", `
+        <input type="text" id="searchInput" placeholder="Search">
+        <button class ="search-button" id="findClientsByCountry">Search</button>
+    `);
+    if(getToken()) {
+        let searchImput = document.querySelector('#searchInput');
+        let searchBtn = document.querySelector('.search-button');
+        searchBtn.addEventListener('click', async (e) => {
+            e.preventDefault(searchImput.value);
+            if(e.target.id === 'findClientsByCountry') {
+                if(getToken()) {
+                    let client = await findClientsByCountry(getToken(), searchImput.value);
+                    console.log(client);
+                    contentData.innerHTML = "";
+                    if(client.length > 0) {
+                        client.forEach((client) => {   
+                            contentData.insertAdjacentHTML("beforeend", `
+                            <div class="card">
+                                <div class="head">
+                                    <div>
+                                        <i class="bx bx-user"></i>
+                                        <h2>${client}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            `)
+                        })
+                    }
+                }else {
+                    console.log("No hay token");
+                }
+            }
+        })
+    }
+})
 
+findClientsWithPaymentInAYearSelector.addEventListener('click', async (e) => {
+    e.preventDefault();
+    searchContent.innerHTML = "";
+    searchContent.insertAdjacentHTML("beforeend", `
+        <input type="text" id="searchInput" placeholder="Search">
+        <button class ="search-button" id="findClientsWithPaymentInAYear">Search</button>
+    `);
+    if(getToken()) {
+        let searchImput = document.querySelector('#searchInput');
+        let searchBtn = document.querySelector('.search-button');
+        searchBtn.addEventListener('click', async (e) => {
+            e.preventDefault(searchImput.value);
+            if(e.target.id === 'findClientsWithPaymentInAYear') {
+                if(getToken()) {
+                    let client = await findClientsWithPaymentInAYear(getToken(), searchImput.value);
+                    console.log(client);
+                    contentData.innerHTML = "";
+                    if(client.length > 0) {
+                        client.forEach((client) => {   
+                            contentData.insertAdjacentHTML("beforeend", `
+                            <div class="card">
+                                <div class="head">
+                                    <div>
+                                        <i class="bx bx-user"></i>
+                                        <h2>${client}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            `)
+                        })
+                    }
+                }else {
+                    console.log("No hay token");
+                }
+            }
+        })
+    }
+})
 
+findClientsByCityAndSalesRepSelector.addEventListener('click', async (e) => {
+    e.preventDefault();
+    searchContent.innerHTML = "";
+    searchContent.insertAdjacentHTML("beforeend", `
+        <input type="text" id="searchInput" placeholder="City">
+        <input type="text" id="searchInput2" placeholder="Sales Rep">
+        <input type="text" id="searchInput3" placeholder="Sales Rep">
+        <button class ="search-button" id="findClientsByCityAndSalesRep">Search</button>
+    `);
+    if(getToken()) {
+        let searchImput = document.querySelector('#searchInput');
+        let searchImput2 = document.querySelector('#searchInput2');
+        let searchImput3 = document.querySelector('#searchInput3');
+        let searchBtn = document.querySelector('.search-button');
+        searchBtn.addEventListener('click', async (e) => {
+            e.preventDefault(searchImput.value);
+            if(e.target.id === 'findClientsByCityAndSalesRep') {
+                if(getToken()) {
+                    let client = await findClientsByCityAndSalesRep(getToken(), searchImput.value, searchImput2.value, searchImput3.value);
+                    console.log(client);
+                    contentData.innerHTML = "";
+                    if(client.length > 0) {
+                        client.forEach((client) => {   
+                            contentData.insertAdjacentHTML("beforeend", `
+                            <div class="card">
+                                <div class="head">
+                                    <div>
+                                        <i class="bx bx-user"></i>
+                                        <h2>${client.clientName}</h2>
+                                        <p>Contact Name: ${client.contactName} ${client.contactLastName}</p>
+                                        <p>Phone: ${client.phone}</p>
+                                        <p>Fax: ${client.fax}</p>
+                                        <p>Address: ${client.addressLine}</p>
+                                        <p>City: ${client.city}</p>
+                                        <p>Region: ${client.region}</p>
+                                        <p>Country: ${client.country}</p>
+                                        <p>Zip Code: ${client.zipCode}</p>
+                                        <p>Sales Rep: ${client.salesRepEmployeeId}</p>
+                                        <p>Credit Limit: ${client.creditLimit}</p>
+                                        <p>Client Name: ${client.clientName}</p>
+                                        <p>Sales Rep: ${client.salesRepEmployeeId}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            `)
+                        })
+                    }
+                }else {
+                    console.log("No hay token");
+                }
+            }
+        })
+    }
+})
+
+findAllClientsWithSalesRepsSelector.addEventListener('click', async (e) => {
+    e.preventDefault();
+    contentData.innerHTML = "";
+    if(getToken()) {
+        let clients = await findAllClientsWithSalesReps(getToken());
+        console.log(clients);
+        clients.forEach((client) => {
+            contentData.insertAdjacentHTML("beforeend", `
+            <div class="card">
+                <div class="head">
+                    <div>
+                        <i class="bx bx-user"></i>
+                        <h2>${client.clientName}</h2>
+                        <p>Sales Rep: ${client.salesRepEmployeeId}</p>
+                    </div>
+                </div>
+            </div>
+            `)
+        })
+    }
+})
 
 
 let data = {
