@@ -27,30 +27,40 @@ public class OrderDetailController {
 
     @Operation(summary = "Get best selling products for the application")
     @GetMapping("/best-selling")
+    @PreAuthorize("hasRole('ADMIN')")
+    @SecurityRequirement(name = "bearerAuth")
     public List<Object[]> getBestSellingProducts() {
         return orderDetailService.findBestSellingProducts();
     }
 
     @Operation(summary = "Get the calculate billing products for the application")
     @GetMapping("/calculate")
+    @PreAuthorize("hasRole('ADMIN')")
+    @SecurityRequirement(name = "bearerAuth")
     public Object[] calculateBilling() {
         return orderDetailService.calculateBilling();
     }
 
     @Operation(summary = "Get the billing by product  for the application")
     @GetMapping("/billing-by-product")
+    @PreAuthorize("hasRole('ADMIN')")
+    @SecurityRequirement(name = "bearerAuth")
     public List<Object[]> calculateBillingByProduct() {
         return orderDetailService.calculateBillingByProduct();
     }
 
     @Operation(summary = "Get the billing by product with or  for the application")
     @GetMapping("/billing-by-productWithOR")
+    @PreAuthorize("hasRole('ADMIN')")
+    @SecurityRequirement(name = "bearerAuth")
     public List<Object[]> calculateBillingByProductWithOR() {
         return orderDetailService.calculateBillingByProductWithOR();
     }
 
     @Operation(summary = "Get vents greater than 3000 for the application")
     @GetMapping("/vents-greater-than-3000")
+    @PreAuthorize("hasRole('ADMIN')")
+    @SecurityRequirement(name = "bearerAuth")
     public List<Object[]> showVentsGreaterthan3000() {
         return orderDetailService.showVentsGreaterthan3000();
     }

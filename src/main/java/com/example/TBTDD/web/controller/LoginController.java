@@ -4,8 +4,10 @@ import com.example.TBTDD.domain.repository.AdminRepository;
 import com.example.TBTDD.domain.security.JWTAuthtenticationConfig;
 import com.example.TBTDD.persistence.entity.Admin;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +26,8 @@ public class LoginController {
     @Operation(summary = "Login For the application")
     @CrossOrigin(origins = "http://127.0.0.1:5500")
     @PostMapping("/login")
+    @PreAuthorize("hasRole('ADMIN')")
+    @SecurityRequirement(name = "bearerAuth")
     public String login(
             @RequestParam("email") String email,
             @RequestParam("password") String password) {
