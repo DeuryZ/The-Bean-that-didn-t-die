@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<link rel="stylesheet" href="style.css">
+	<script src="main.js" async type="module"></script>
+	<script src="functionsImpl/clientImpl.js" async type="module"></script>
+	<script src="functionsImpl/employeeImpl.js" async type="module"></script>
+	<script src="functionsImpl/officesImpl.js" async type="module"></script>
+	<script src="functionsImpl/orderDetailImpl.js" async type="module"></script>
+	<script src="functionsImpl/ordersImpl.js" async type="module"></script>
+	<script src="functionsImpl/paymentImpl.js" async type="module"></script>
+	<script src="functionsImpl/productImpl.js" async type="module"></script>
+	<script src="functionsImpl/rangeProductImpl.js" async type="module"></script>
+	<title>TBTTD</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allison&display=swap" rel="stylesheet">
+</head>
+<body>
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="#" class="brand"><i ></i>
+            <div class="spinner"></div>  The Bean that didn't die</a>
+		<ul class="side-menu">
+			<li><a href="#" class="active"><i class='bx bxs-dashboard icon' ></i> Start Menu</a></li>
+			<li class="divider" data-text="Search">Main</li>
+			<li>
+				<a href="#"><i class='bx bxs-inbox icon' ></i> Queries about clients <i class='bx bx-chevron-right icon-right' ></i></a>
+				<ul class="side-dropdown">
+					<li id="getAllClients"><a href="">Get all clients</a></li>
+					<li id="findClientsByCountry"><a href="">Find clients by country</a></li>
+					<li id="findClientsWithPaymentInAYear"><a href="">Find clients with payment in a year</a></li>
+					<li id="findClientsByCityAndSalesRep"><a href="">Find clients by city and sales rep</a></li>
+					<li id="findAllClientsWithSalesReps"><a href="">Find all clients with sales reps</a></li>
+					<li id="findAllClientsWithSalesRepIfPayment"><a href="">Find all clients with sales rep if payment</a></li>
+					<li id="findAllClientsWithSalesRepWithoutPayment"><a href="">Find all clients with sales rep without payment</a></li>
+					<li id="findAllClientsWithSalesRepAndOfficeIfPayment"><a href="">Find all clients with sales rep and office if payment</a></li>
+					<li id="findAllClientsWithSalesRepAndOfficeWithoutPayment"><a href="">Find all clients with sales rep and office without payment</a></li>
+					<li id="findAllClientsWithSalesRepAndOffice"><a href="">Find all clients with sales rep and office</a></li>
+					<li id="findClientsWithPendingOrdersLaterThanExpected"><a href="">Find clients with pending orders later than expected</a></li>
+					<li id="findClientsWithoutPayment"><a href="">Find clients without payment</a></li>
+					<li id="findClientsWithoutOrder"><a href="">Find clients without order</a></li>
+					<li id="findClientsWithoutOrderOrWithoutPayment"><a href="">Find clients without order or without payment</a></li>
+					<li id="countByCountry"><a href="">Count by country</a></li>
+					<li id="count"><a href="">Count all clients</a></li>
+					<li id="countInMadrid"><a href="">Count in Madrid</a></li>
+					<li id="countCitiesStartingWithM"><a href="">Count cities starting with M</a></li>
+					<li id="withoutSalesRepresentative"><a href="">Without sales representative</a></li>
+				</ul>				
+			</li>
+			<li>
+				<a href="#"><i class='bx bxs-inbox icon' ></i> Queries about employees <i class='bx bx-chevron-right icon-right' ></i></a>
+				<ul class="side-dropdown">
+					<li id="getAllEmployees"><a href="">Get all employees</a></li>
+					<li id="getEmployeeInfoByReportsTo"><a href="">Get employee info by reports to</a></li>
+					<li id="findBossCompany"><a href="">Find employees without boss</a></li>
+					<li id="findDifferentByJobTitle"><a href="">Find different by job title</a></li>
+					<li id="findAllEmployeesWithBoss"><a href="">Find all employees with boss</a></li>
+					<li id="findAllEmployeesWithBossAndBoss"><a href="">Find all employees without boss and boss's boss</a></li>
+					<li id="findAllEmployeesWithoutOffice"><a href="">Find all employees without office</a></li>
+					<li id="findAllEmployeesWithoutClients"><a href="">Find all employees without clients</a></li>
+					<li id="findAllEmployeesWithoutClientsOrOffice"><a href="">Find all employees without clients or office</a></li>
+					<li id="total"><a href="">Total employees</a></li>
+					<li id="clients-per-employee"><a href="">Clients per employee</a></li>
+				</ul>				
+			</li>
+			<li>
+				<a href="#"><i class='bx bxs-inbox icon' ></i> Queries about offices <i class='bx bx-chevron-right icon-right' ></i></a>
+				<ul class="side-dropdown">
+					<li id="getAllOffices"><a href="">Get all offices</a></li>
+					<li id="getCodeAndCityByOffice"><a href="">Get code and city by office</a></li>
+					<li id="getCityAndNumberByCountry"><a href="">Get city and number by country</a></li>
+					<li id="getAddressByCity"><a href="">Get address by city</a></li>
+				</ul>				
+			</li>
+			<li>
+				<a href="#"><i class='bx bxs-inbox icon' ></i> Queries about orders details <i class='bx bx-chevron-right icon-right'></i></a>
+				<ul class="side-dropdown">
+					<li id="best-selling"><a href="">Best selling</a></li>
+					<li id="calculate"><a href="">Get the calculate billing products</a></li>
+					<li id="billing-by-product"><a href="">Get the billing by product  for the application</a></li>
+					<li id="billing-by-productWithOR"><a href="">Get the billing by product with or  for the application</a></li>
+					<li id="get-products-greater-than-3000"><a href="">Get the products greater than 3000</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="#"><i class='bx bxs-inbox icon' ></i> Queries about orders <i class='bx bx-chevron-right icon-right'></i></a>
+				<ul class="side-dropdown">
+					<li id="getAllOrders"><a href="">Get all orders</a></li>
+					<li id="getStates"><a href="">Get states</a></li>
+					<li id="getOrdersDeliveredAfterExpected"><a href="">Get orders delivered after expected</a></li> 
+					<li id="getOrdersInDelivery"><a href="">Get orders in delivery</a></li>
+					<li id="getOrdersByStateAndYear"><a href="">Get orders by state and year</a></li>
+					<li id="getOrdersByStateAndMonth"><a href="">Get orders by state and month</a></li>
+					<li id="getAmountByState"><a href="">Get amount orders by state</a></li>
+					<li id="first-last-dates-by-client"><a href="">Get first and last dates by client</a></li>
+					<li id="getOrdersBySumTotalQuantityByOrder"><a href="">Get orders by sum total quantity by order</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="#"><i class='bx bxs-inbox icon' ></i> Queries about Payments <i class='bx bx-chevron-right icon-right'></i></a>
+				<ul class="side-dropdown">
+					<li id="getAllPayments"><a href="">Get all payments</a></li>
+					<li id="getPaymentsByTypeAndYearOrganized"><a href="">Get payments by type and year organized</a></li>
+					<li id="getPaymentMethods"><a href="">Get payment methods</a></li>
+					<li id="average-payment-2009"><a href="">Get average payment 2009</a></li>
+					<li id="total-by-year"><a href="">Get total by year</a></li>
+
+				</ul>
+			</li>
+			<li>
+				<a href="#"><i class='bx bxs-inbox icon' ></i> Queries about Product <i class='bx bx-chevron-right icon-right'></i></a>
+				<ul class="side-dropdown">
+					<li id="getAllProducts"><a href="">Get all products</a></li>
+					<li id="findProductByGamaAndStock"><a href="">Find product by gama and stock</a></li>
+					<li id="findProductsWithoutOrder"><a href="">Find products without order</a></li>
+					<li id="expensive-cheap"><a href="">Get most expensive and most cheap product</a></li>
+
+				</ul>
+			</li>
+			<li>
+				<a href="#"><i class='bx bxs-inbox icon' ></i> Queries about Range Product <i class='bx bx-chevron-right icon-right'></i></a>
+				<ul class="side-dropdown">
+					<li id="findRangeProductByClientId"><a href="">Find range product by client</a></li>
+				</ul>
+			</li>
+
+		</li>
+
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
+ 
+	<!-- NAVBAR -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu toggle-sidebar' ></i>
+			<form action="#">
+				
+			</form>
+			
+			<span class="divider"></span>
+			<div class="profile">
+				<img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
+				<ul class="profile-link">
+					<li><a href="#"><i class='bx bxs-user-circle icon' ></i> Profile</a></li>
+					<li><a href="#"><i class='bx bxs-cog' ></i> Settings</a></li>
+					<li id ="logout"><a href="#"><i class='bx bxs-log-out-circle' ></i> Logout</a></li>
+				</ul>
+			</div>
+		</nav>
+		<!-- NAVBAR -->
+
+		<!-- MAIN -->
+        
+		<main>
+            
+			<h1 class="title">About us</h1>
+			<ul class="breadcrumbs">
+				<li><a href="/main.html">Start Menu</a></li>
+				<li class="divider">/</li>
+				<li><a href="#" class="active">About us </a></li>
+			</ul>
+            <div class="search">
+
+			</div>
+			<div class="info-data">
+				
+			</div>
+			<div class="data">
+				<div class="content-data">
+					<div class="head">
+						<h3>More Information</h3>
+					</div>
+                    <p>Gardening, the laying out and care of a plot of ground devoted partially or wholly to the growing of plants such as flowers, herbs, or vegetables.</p>
+
+                    
+					<!-- conteido -->
+			</div>
+            <div class="card">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="card-inner"><p class="container ">The purpose of this page is to keep our clients informed with their corresponding purchases, thus demonstrating the interest and capacity of our work.</p></div>
+            </div>
+            <div class="card">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="card-inner"><p class="container">Plant your own garden and decorate your soul, instead of waiting for someone to bring you flowers</p></div>
+            </div>
+		</main>
+		<!-- MAIN -->
+	</section>
+	<!-- NAVBAR -->
+</body>
+</html>
