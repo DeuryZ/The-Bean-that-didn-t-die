@@ -126,15 +126,15 @@
 
 | File                                                                                                                     | Summary                                                        |
 | ---                                                                                                                      | ---                                                            |
-| [offices.js](https://github.com/DeuryZ/The-Bean-that-didn-t-die.git/blob/master/frontend/functions/offices.js)           | HTTP error 401 for prompt `frontend/functions/offices.js`      |
-| [product.js](https://github.com/DeuryZ/The-Bean-that-didn-t-die.git/blob/master/frontend/functions/product.js)           | HTTP error 401 for prompt `frontend/functions/product.js`      |
-| [clients.js](https://github.com/DeuryZ/The-Bean-that-didn-t-die.git/blob/master/frontend/functions/clients.js)           | HTTP error 401 for prompt `frontend/functions/clients.js`      |
-| [orders.js](https://github.com/DeuryZ/The-Bean-that-didn-t-die.git/blob/master/frontend/functions/orders.js)             | HTTP error 401 for prompt `frontend/functions/orders.js`       |
-| [orderDetail.js](https://github.com/DeuryZ/The-Bean-that-didn-t-die.git/blob/master/frontend/functions/orderDetail.js)   | HTTP error 401 for prompt `frontend/functions/orderDetail.js`  |
-| [getToken.js](https://github.com/DeuryZ/The-Bean-that-didn-t-die.git/blob/master/frontend/functions/getToken.js)         | HTTP error 401 for prompt `frontend/functions/getToken.js`     |
-| [payment.js](https://github.com/DeuryZ/The-Bean-that-didn-t-die.git/blob/master/frontend/functions/payment.js)           | HTTP error 401 for prompt `frontend/functions/payment.js`      |
-| [rangeProduct.js](https://github.com/DeuryZ/The-Bean-that-didn-t-die.git/blob/master/frontend/functions/rangeProduct.js) | HTTP error 401 for prompt `frontend/functions/rangeProduct.js` |
-| [employees.js](https://github.com/DeuryZ/The-Bean-that-didn-t-die.git/blob/master/frontend/functions/employees.js)       | HTTP error 401 for prompt `frontend/functions/employees.js`    |
+| [offices.js](https://github.com/DeuryZ/The-Bean-that-didn-t-die.git/blob/master/frontend/functions/offices.js)           | `frontend/functions/offices.js`      |
+| [product.js](https://github.com/DeuryZ/The-Bean-that-didn-t-die.git/blob/master/frontend/functions/product.js)           | `frontend/functions/product.js`      |
+| [clients.js](https://github.com/DeuryZ/The-Bean-that-didn-t-die.git/blob/master/frontend/functions/clients.js)           | `frontend/functions/clients.js`      |
+| [orders.js](https://github.com/DeuryZ/The-Bean-that-didn-t-die.git/blob/master/frontend/functions/orders.js)             | `frontend/functions/orders.js`       |
+| [orderDetail.js](https://github.com/DeuryZ/The-Bean-that-didn-t-die.git/blob/master/frontend/functions/orderDetail.js)   |  `frontend/functions/orderDetail.js`  |
+| [getToken.js](https://github.com/DeuryZ/The-Bean-that-didn-t-die.git/blob/master/frontend/functions/getToken.js)         | `frontend/functions/getToken.js`     |
+| [payment.js](https://github.com/DeuryZ/The-Bean-that-didn-t-die.git/blob/master/frontend/functions/payment.js)           | `frontend/functions/payment.js`      |
+| [rangeProduct.js](https://github.com/DeuryZ/The-Bean-that-didn-t-die.git/blob/master/frontend/functions/rangeProduct.js) | `frontend/functions/rangeProduct.js` |
+| [employees.js](https://github.com/DeuryZ/The-Bean-that-didn-t-die.git/blob/master/frontend/functions/employees.js)       | `frontend/functions/employees.js`    |
 
 </details>
 
@@ -367,6 +367,86 @@ Contributions are welcome! Here are several ways you can contribute:
 Once your PR is reviewed and approved, it will be merged into the main branch.
 
 </details>
+---
+## Endpoints 
+Recording after used the endPoint use: http://localhost:8080
+
+### Admin Resources 
+
+`/admin/{id}`
+`/admin/all`
+### Range Resources 
+
+`/rangeProduct/getRangeProductById/{rangeProductId}`
+`/rangeProduct/getRangeProductById/{rangeProductId}`
+`/rangeProduct/getRangeProductById/{rangeProductId}`
+### Payment Resources 
+`/payments/total-by-year`
+`/payments/average-payment-2009`
+`/payments/getPaymentsByTypeAndYearOrganized/{year}/{paymentType}`
+`/payments/getPaymentMethods`
+`/payments/getPaymentById/{paymentId}`
+`/payments/all`
+### Order Resources 
+
+`/orders/sum-total-quantity-by-order`
+`/orders/first-last-dates-by-client`
+`/orders/amount-by-state`
+`/orders/getStates`
+`/orders/getOrdersInDelivery/{days}`
+`/orders/getOrdersDeliveredAfterExpected`
+`/orders/getOrdersByStateAndYear/{state}/{year}`
+`/orders/getOrdersByStateAndMonth/{state}/{month}`
+`/orders/findOrderById/{orderId}`
+`/orders/all`
+
+### OrderDetail Resources 
+`/orderDetail/vents-greater-than-3000`
+`/orderDetail/calculate`
+`/orderDetail/billing-by-product`
+`/orderDetail/billing-by-productWithOR`
+`/orderDetail/best-selling`
+### Employee Resources 
+`/employees/total`
+`/employees/getEmployeeInfoByReportsTo/{reportsTo}`
+`/employees/getEmployeeById/{employeeId}`
+`/employees/findDifferentByJobTitle/{jobTitle}`
+`/employees/findBossCompany`
+`/employees/findAllEmployeesWithoutOffice`
+`/employees/findAllEmployeesWithoutClients`
+`/employees/findAllEmployeesWithoutClientsOrOffice`
+`/employees/findAllEmployeesWithBoss`
+`/employees/findAllEmployeesWithBossAndBoss`
+`/employees/clients-per-employee`
+`/employees/all`
+### Clients Resources 
+`/clients/without-sales-representative`
+`/clients/findClientsWithoutPayment`
+`/clients/findClientsWithoutOrder`
+`/clients/findClientsWithoutOrderOrWithoutPayment`
+`/clients/findClientsWithPendingOrdersLaterThanExpected`
+`/clients/findClientsWithPaymentInAYear/{year}`
+`/clients/findClientsByCountry/{country}`
+`/clients/findClientsByCityAndSalesRep/{city}/{salesRepEmployeeId1}/{salesRepEmployeeId2}`
+`/clients/findClientById/{clientId}`
+`/clients/findAllClientsWithSalesRep`
+`/clients/findAllClientsWithSalesRepWithoutPayment`
+`/clients/findAllClientsWithSalesRepIfPayment`
+`/clients/findAllClientsWithSalesRepAndOffice`
+`/clients/findAllClientsWithSalesRepAndOfficeWithoutPayment`
+`/clients/findAllClientsWithSalesRepAndOfficeIfPayment`
+`/clients/count`
+`/clients/count-in-madrid`
+`/clients/count-by-country`
+`/clients/all`
+
+### Product Resources 
+
+`/product/findProductsWithoutOrder`
+`/product/findProductById/{productId}`
+`/product/findProductByGamaAndStock/{rangeProductId}/{quantityInStock}`
+`/product/expensive-cheap`
+`/product/all`
 
 ---
 
