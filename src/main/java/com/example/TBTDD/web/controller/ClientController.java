@@ -1,5 +1,7 @@
 package com.example.TBTDD.web.controller;
 
+import com.example.TBTDD.domain.exception.InvalidClientIdException;
+import com.example.TBTDD.domain.exception.handleInvalidTokenException;
 import com.example.TBTDD.domain.serviceImpl.ClientServiceImpl;
 import com.example.TBTDD.domain.serviceImpl.EmployeeServiceImpl;
 import com.example.TBTDD.persistence.DTO.ClientDTO;
@@ -7,11 +9,15 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -37,13 +43,32 @@ public class ClientController {
         return clientService.findAllClients();
     }
 
-    @Operation (summary = "Find  client by id for the application")
+    @Operation(summary = "Find client by id for the application")
     @GetMapping("/findClientById/{clientId}")
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
-    public ClientDTO getClientById(@PathVariable String clientId) {
-        return clientService.getClientById(clientId);
+    public ResponseEntity<?> getClientById(@PathVariable String clientId) {
+        try {
+            // Validar que el clientId no esté vacío
+            if (clientId == null || clientId.isEmpty()) {
+                throw new InvalidClientIdException("Invalid ID");
+            }
+
+            // Llamar al servicio para obtener el cliente
+            ClientDTO clientDTO = clientService.getClientById(clientId);
+
+            // Retornar la respuesta exitosa
+            return ResponseEntity.ok(clientDTO);
+        } catch (InvalidClientIdException e) {
+            // Capturar la excepción de ID de cliente inválido y devolver un mensaje personalizado
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
+        } catch (Exception e) {
+            // Capturar otras excepciones y devolver un mensaje genérico de error del servidor
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Internal server error", e);
+        }
     }
+
+
 
     @Operation (summary = "Find client by country for the application")
     @GetMapping("/findClientsByCountry/{country}")
