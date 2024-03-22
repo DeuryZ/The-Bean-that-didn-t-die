@@ -45,7 +45,7 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
     List<Object[]> findFirstAndLastOrderDatesByClient();
 
     //13 third list
-    @Query("SELECT od.id, SUM(od.quantity) " +
+    @Query("SELECT od.id.product.name, SUM(od.quantity) " +
             "FROM OrderDetail od " +
             "GROUP BY od.id")
     List<Object[]> sumTotalQuantityByOrder();

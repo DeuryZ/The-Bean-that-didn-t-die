@@ -45,7 +45,6 @@ let countCitiesStartingWithMSelector = document.querySelector('#countCitiesStart
 let withoutSalesRepresentativeSelector = document.querySelector('#withoutSalesRepresentative');
 
 
-//------------------- Containers -------------------
 let contentData = document.querySelector('.info-data');
 let searchContent = document.querySelector('.search');
 let title = document.querySelector('.title');
@@ -658,36 +657,3 @@ withoutSalesRepresentativeSelector.addEventListener('click', async (e) => {
                 `)
         } 
 })
-
-
-
-
-
-let data = {
-    "clientId": 1,
-    "contactName": "Daniel G",
-    "contactLastName": "GoldFish",
-    "phone": "5556901745",
-    "fax": "5556901746",
-    "addressLine": "False Street 52 2 A",
-    "addressLine2": null,
-    "city": "San Francisco",
-    "region": null,
-    "country": "USA",
-    "zipCode": "24006",
-    "salesRepEmployeeId": null,
-    "creditLimit": 3000,
-    "clientName": "GoldFish Garden"
-}
-{/* <p>Phone: ${client.phone}</p>
-<p>Fax: ${client.fax}</p>
-<p>Address: ${client.addressLine}</p>
-<p>City: ${client.city}</p>
-<p>Region: ${client.region}</p>
-<p>Country: ${client.country}</p>
-<p>Zip Code: ${client.zipCode}</p>
-<p>Credit Limit: ${client.creditLimit}</p>
-<p>Sales Rep: ${client.salesRepEmployeeId}</p>
-<p>Contact Name: ${client.contactName}</p>
-<p>Contact Last Name: ${client.contactLastName}</p>
-<p>Client Name: ${client.clientName}</p> */}

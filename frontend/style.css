@@ -26,7 +26,7 @@ html {
 
 body {
 	background: var(--grey);
-	overflow-x: hidden;
+	overflow: hidden;
 }
 
 a {
@@ -366,6 +366,7 @@ main .info-data {
 main .info-data .card {
 	padding: 20px;
 	height: fit-content;
+	width: 100%;
 	border-radius: 10px;
 	background: var(--light);
 	box-shadow: 4px 4px 16px rgba(0, 0, 0, .05);

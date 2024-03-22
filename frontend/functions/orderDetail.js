@@ -1,8 +1,40 @@
 import { createRequestOptions } from "../functions/getToken.js";
 
-export function getAllOffices(token) {
+export function bestSelling(token) {
     const requestOptions = createRequestOptions(token);
-    return fetch("http://localhost:8080/offices/all", requestOptions)
+    return fetch("http://localhost:8080/orderDetail/best-selling", requestOptions)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error("Error al ejecutar la solicitud");
+            }
+            return response.json();
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+            throw error;
+        });
+    
+}
+
+export function calculate (token) {
+    const requestOptions = createRequestOptions(token);
+    return fetch("http://localhost:8080/orderDetail/calculate", requestOptions)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error("Error al ejecutar la solicitud");
+            }
+            return response.json();
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+            throw error;
+        });
+    
+}
+
+export function billingByProduct (token) {
+    const requestOptions = createRequestOptions(token);
+    return fetch("http://localhost:8080/orderDetail/billing-by-product", requestOptions)
         .then((response) => {
             if (!response.ok) {
                 throw new Error("Error al ejecutar la solicitud");
@@ -15,9 +47,9 @@ export function getAllOffices(token) {
         });
 }
 
-export function getOfficeById(token, officeId) {
+export function billingByProductWithOR (token) {
     const requestOptions = createRequestOptions(token);
-    return fetch(`http://localhost:8080/offices/getOfficeById/${officeId}`, requestOptions)
+    return fetch("http://localhost:8080/orderDetail/billing-by-productWithOR", requestOptions)
         .then((response) => {
             if (!response.ok) {
                 throw new Error("Error al ejecutar la solicitud");
@@ -30,39 +62,9 @@ export function getOfficeById(token, officeId) {
         });
 }
 
-export function getCodeAndCityByOffice(token) {
+export function getProductsGreaterThan3000 (token) {
     const requestOptions = createRequestOptions(token);
-    return fetch(`http://localhost:8080/offices/getCodeAndCityByOffice`, requestOptions)
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error("Error al ejecutar la solicitud");
-            }
-            return response.json();
-        })
-        .catch((error) => {
-            console.error("Error:", error);
-            throw error;
-        });
-}
-
-export function getCityAndNumberByCountry(token, country) {
-    const requestOptions = createRequestOptions(token);
-    return fetch(`http://localhost:8080/offices/getCityAndNumberByCountry/${country}`, requestOptions)
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error("Error al ejecutar la solicitud");
-            }
-            return response.json();
-        })
-        .catch((error) => {
-            console.error("Error:", error);
-            throw error;
-        });
-}
-
-export function getAddressByCity(token, city) {
-    const requestOptions = createRequestOptions(token);
-    return fetch(`http://localhost:8080/offices/getAddressByCity/${city}`, requestOptions)
+    return fetch("http://localhost:8080/orderDetail/vents-greater-than-3000", requestOptions)
         .then((response) => {
             if (!response.ok) {
                 throw new Error("Error al ejecutar la solicitud");
