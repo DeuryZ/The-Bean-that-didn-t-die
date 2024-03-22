@@ -42,7 +42,7 @@ public interface ClientRepository extends JpaRepository<Client, String> {
     List<Object> findAllClientsWithSalesRepAndOfficeWithoutPayment();
 
     //7 from second list
-    @Query("SELECT DISTINCT c.clientName, e.CONCAT(e.employeeName,' ', e.employeeLastName1, ' ', e.employeeLastName2), o.city FROM Client c JOIN c.salesRepEmployeeId e JOIN e.office o")
+    @Query("SELECT DISTINCT c.clientName, CONCAT(e.employeeName,' ', e.employeeLastName1, ' ', e.employeeLastName2), o.city FROM Client c JOIN c.salesRepEmployeeId e JOIN e.office o")
     List<Object> findAllClientsWithSalesRepAndOffice();
 
     //10 from second list

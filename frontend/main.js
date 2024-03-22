@@ -1,4 +1,20 @@
 // SIDEBAR DROPDOWN
+
+window.onload = function() {
+    var token = sessionStorage.getItem('jwtToken');
+    if (!token) {
+        window.location.href = './index.html';
+    }
+};
+
+//-------- Log out --------//
+let logOut = document.querySelector("#logout");
+logOut.addEventListener("click", (e) => {
+    e.preventDefault();
+    sessionStorage.removeItem("jwtToken");
+    window.location.href = "login.html";
+});
+
 const allDropdown = document.querySelectorAll('#sidebar .side-dropdown');
 const sidebar = document.getElementById('sidebar');
 allDropdown.forEach(item=> {

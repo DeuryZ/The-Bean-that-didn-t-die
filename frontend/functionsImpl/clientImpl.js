@@ -69,8 +69,19 @@ getAll.addEventListener('click', async (e) => {
                 <div class="head">
                     <div>
                         <i class="bx bx-user"></i>
-                        <h2>${client.clientId}</h2>
-                        <p>${client.clientName}</p>
+                        <h2>${client.clientName}</h2>
+                        <p>Contact Name: ${client.contactName} ${client.contactLastName}</p>
+                        <p>Phone: ${client.phone}</p>
+                        <p>Fax: ${client.fax}</p>
+                        <p>Address: ${client.addressLine}</p>
+                        <p>City: ${client.city}</p>
+                        <p>Region: ${client.region}</p>
+                        <p>Country: ${client.country}</p>
+                        <p>Zip Code: ${client.zipCode}</p>
+                        <p>Sales Rep: ${client.salesRepEmployeeId}</p>
+                        <p>Credit Limit: ${client.creditLimit}</p>
+                        <p>Client Name: ${client.clientName}</p>
+                        <p>Sales Rep: ${client.salesRepEmployeeId}</p>
                     </div>
                 </div>
             </div>
@@ -91,8 +102,19 @@ getAll.addEventListener('click', async (e) => {
                     <div class="head">
                         <div>
                             <i class="bx bx-user"></i>
-                            <h2>${client.clientId}</h2>
-                            <p>${client.clientName}</p>
+                            <h2>${client.clientName}</h2>
+                            <p>Contact Name: ${client.contactName} ${client.contactLastName}</p>
+                            <p>Phone: ${client.phone}</p>
+                            <p>Fax: ${client.fax}</p>
+                            <p>Address: ${client.addressLine}</p>
+                            <p>City: ${client.city}</p>
+                            <p>Region: ${client.region}</p>
+                            <p>Country: ${client.country}</p>
+                            <p>Zip Code: ${client.zipCode}</p>
+                            <p>Sales Rep: ${client.salesRepEmployeeId}</p>
+                            <p>Credit Limit: ${client.creditLimit}</p>
+                            <p>Client Name: ${client.clientName}</p>
+                            <p>Sales Rep: ${client.salesRepEmployeeId}</p>
                         </div>
                     </div>
                 </div>
@@ -393,6 +415,250 @@ findAllClientsWithSalesRepAndOfficeSelector.addEventListener('click', async (e) 
         })
     }
 })
+
+findClientsWithPendingOrdersLaterThanExpectedSelector.addEventListener('click', async (e) => {
+    e.preventDefault();
+    contentData.innerHTML = "";
+    searchContent.innerHTML = "";
+    title.innerHTML = "Clients with pending orders later than expected";
+    if(getToken()) {
+        let clients = await findClientsWithPendingOrdersLaterThanExpected(getToken());
+        console.log(clients);
+        clients.forEach((client) => {
+            contentData.insertAdjacentHTML("beforeend", `
+            <div class="card">
+                <div class="head">
+                    <div>
+                        <i class="bx bx-user"></i>
+                        <h2>${client.clientName}</h2>
+                        <p>Contact Name: ${client.contactName} ${client.contactLastName}</p>
+                        <p>Phone: ${client.phone}</p>
+                        <p>Fax: ${client.fax}</p>
+                        <p>Address: ${client.addressLine}</p>
+                        <p>City: ${client.city}</p>
+                        <p>Region: ${client.region}</p>
+                        <p>Country: ${client.country}</p>
+                        <p>Zip Code: ${client.zipCode}</p>
+                        <p>Sales Rep: ${client.salesRepEmployeeId}</p>
+                        <p>Credit Limit: ${client.creditLimit}</p>
+                        <p>Client Name: ${client.clientName}</p>
+                        <p>Sales Rep: ${client.salesRepEmployeeId}</p>
+                    </div>
+                </div>
+            </div>
+            `)
+        })
+    }
+})
+
+findClientsWithoutPaymentSelector.addEventListener('click', async (e) => {
+    e.preventDefault();
+    contentData.innerHTML = "";
+    searchContent.innerHTML = "";
+    title.innerHTML = "Clients without payment";
+    if(getToken()) {
+        let clients = await findClientsWithoutPayment(getToken());
+        console.log(clients);
+        clients.forEach((client) => {
+            contentData.insertAdjacentHTML("beforeend", `
+            <div class="card">
+                <div class="head">
+                    <div>
+                    <i class="bx bx-user"></i>
+                    <h2>${client.clientName}</h2>
+                    <p>Contact Name: ${client.contactName} ${client.contactLastName}</p>
+                    <p>Phone: ${client.phone}</p>
+                    <p>Fax: ${client.fax}</p>
+                    <p>Address: ${client.addressLine}</p>
+                    <p>City: ${client.city}</p>
+                    <p>Region: ${client.region}</p>
+                    <p>Country: ${client.country}</p>
+                    <p>Zip Code: ${client.zipCode}</p>
+                    <p>Sales Rep: ${client.salesRepEmployeeId}</p>
+                    <p>Credit Limit: ${client.creditLimit}</p>
+                    <p>Client Name: ${client.clientName}</p>
+                    <p>Sales Rep: ${client.salesRepEmployeeId}</p>
+                    </div>
+                </div>
+            </div>
+            `)
+        })
+    }
+})
+
+findClientsWithoutOrderSelector.addEventListener('click', async (e) => {
+    e.preventDefault();
+    contentData.innerHTML = "";
+    searchContent.innerHTML = "";
+    title.innerHTML = "Clients without order";
+    if(getToken()) {
+        let clients = await findClientsWithoutOrder(getToken());
+        console.log(clients);
+        clients.forEach((client) => {
+            contentData.insertAdjacentHTML("beforeend", `
+            <div class="card">
+                <div class="head">
+                    <div>
+                    <i class="bx bx-user"></i>
+                    <h2>${client.clientName}</h2>
+                    <p>Contact Name: ${client.contactName} ${client.contactLastName}</p>
+                    <p>Phone: ${client.phone}</p>
+                    <p>Fax: ${client.fax}</p>
+                    <p>Address: ${client.addressLine}</p>
+                    <p>City: ${client.city}</p>
+                    <p>Region: ${client.region}</p>
+                    <p>Country: ${client.country}</p>
+                    <p>Zip Code: ${client.zipCode}</p>
+                    <p>Sales Rep: ${client.salesRepEmployeeId}</p>
+                    <p>Credit Limit: ${client.creditLimit}</p>
+                    <p>Client Name: ${client.clientName}</p>
+                    <p>Sales Rep: ${client.salesRepEmployeeId}</p>
+                    </div>
+                </div>
+            </div>
+            `)
+        })
+    }
+})
+
+findClientsWithoutOrderOrWithoutPaymentSelector.addEventListener('click', async (e) => {
+    e.preventDefault();
+    contentData.innerHTML = "";
+    searchContent.innerHTML = "";
+    title.innerHTML = "Clients without order or without payment";
+    if(getToken()) {
+        let clients = await findClientsWithoutOrderOrWithoutPayment(getToken());
+        console.log(clients);
+        clients.forEach((client) => {
+            contentData.insertAdjacentHTML("beforeend", `
+            <div class="card">
+                <div class="head">
+                    <div>
+                    <i class="bx bx-user"></i>
+                    <h2>${client.clientName}</h2>
+                    <p>Contact Name: ${client.contactName} ${client.contactLastName}</p>
+                    <p>Phone: ${client.phone}</p>
+                    <p>Fax: ${client.fax}</p>
+                    <p>Address: ${client.addressLine}</p>
+                    <p>City: ${client.city}</p>
+                    <p>Region: ${client.region}</p>
+                    <p>Country: ${client.country}</p>
+                    <p>Zip Code: ${client.zipCode}</p>
+                    <p>Sales Rep: ${client.salesRepEmployeeId}</p>
+                    <p>Credit Limit: ${client.creditLimit}</p>
+                    <p>Client Name: ${client.clientName}</p>
+                    <p>Sales Rep: ${client.salesRepEmployeeId}</p>
+                    </div>
+                </div>
+            </div>
+            `)
+        })
+    }
+})
+
+countByCountrySelector.addEventListener('click', async (e) => {
+    e.preventDefault();
+    if(getToken()) {
+        let count = await countByCountry(getToken());
+        contentData.innerHTML = "";
+        title.innerHTML = "Clients in all countries";
+        count.forEach((element) => {
+            console.log(element);
+            contentData.insertAdjacentHTML("beforeend", `
+            <div class="card">
+                <div class="head">
+                    <div>
+                        <i class="bx bx-desktop"></i>
+                        <h2>${element[0]}</h2>
+                        <p>${element[1]}</p>
+                    </div>
+                </div>
+            </div>
+            `)
+        })
+    }
+})
+
+countSelector.addEventListener('click', async (e) => {
+    e.preventDefault();
+    if(getToken()) {
+        let countData = await count(getToken());
+        contentData.innerHTML = "";
+        title.innerHTML = "All clients";
+            contentData.insertAdjacentHTML("beforeend", `
+            <div class="card">
+                <div class="head">
+                    <div>
+                        <i class="bx bx-desktop"></i>
+                        <h2>${countData}</h2>
+                    </div>
+                </div>
+            </div>
+            `)
+    }
+})
+
+countInMadridSelector.addEventListener('click', async (e) => {
+    e.preventDefault();
+    if(getToken()) {
+        let countData = await countInMadrid(getToken());
+        contentData.innerHTML = "";
+        title.innerHTML = "All clients";
+            contentData.insertAdjacentHTML("beforeend", `
+            <div class="card">
+                <div class="head">
+                    <div>
+                        <i class="bx bx-desktop"></i>
+                        <h2>${countData}</h2>
+                    </div>
+                </div>
+            </div>
+            `)
+    }
+})
+
+countCitiesStartingWithMSelector.addEventListener('click', async (e) => {
+    e.preventDefault();
+    if(getToken()) {
+        let count = await countCitiesStartingWithM(getToken());
+        contentData.innerHTML = "";
+        title.innerHTML = "Cities starting with M";
+        count.forEach((element) => {
+            console.log(element);
+            contentData.insertAdjacentHTML("beforeend", `
+            <div class="card">
+                <div class="head">
+                    <div>
+                        <i class="bx bx-desktop"></i>
+                        <h2>${element[0]}</h2>
+                        <p>${element[1]}</p>
+                    </div>
+                </div>
+            </div>
+            `)
+        })
+    }
+})
+
+withoutSalesRepresentativeSelector.addEventListener('click', async (e) => {
+    e.preventDefault();
+    if(getToken()) {
+            let countData = await withoutSalesRepresentative(getToken());
+            contentData.innerHTML = "";
+            title.innerHTML = "All clients";
+                contentData.insertAdjacentHTML("beforeend", `
+                <div class="card">
+                    <div class="head">
+                        <div>
+                            <i class="bx bx-desktop"></i>
+                            <h2>${countData}</h2>
+                        </div>
+                    </div>
+                </div>
+                `)
+        } 
+})
+
 
 
 

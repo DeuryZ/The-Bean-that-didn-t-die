@@ -1,5 +1,8 @@
 let register = document.querySelector("#register");
 let loginContainer = document.querySelector("#login-register");
+
+
+
 function showSuccessAlert(message) {
     Swal.fire({
         icon: 'success',
