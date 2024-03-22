@@ -25,7 +25,7 @@ public class OrderController {
         this.orderService = orderService;
     }
     @Operation(summary = "Get all Orders for the application")
-    @RequestMapping("/all")
+    @GetMapping("/all")
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
     public List<OrderDTO> findAllOrders() {
@@ -33,7 +33,7 @@ public class OrderController {
     }
 
     @Operation(summary = "Get all order by id for the application")
-    @RequestMapping("/findOrderById/{orderId}")
+    @GetMapping("/findOrderById/{orderId}")
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
     public OrderDTO getOrderById(@PathVariable Integer orderId) {
@@ -41,14 +41,14 @@ public class OrderController {
     }
 
     @Operation(summary = "Get all states for the application")
-    @RequestMapping("/getStates")
+    @GetMapping("/getStates")
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
     public List<Object> getStates() {
         return orderService.getStates();
     }
     @Operation(summary = "Get all orders delivered after expected for the application")
-    @RequestMapping("/getOrdersDeliveredAfterExpected")
+    @GetMapping("/getOrdersDeliveredAfterExpected")
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
     public List<Object> getOrdersDeliveredAfterExpected() {
@@ -56,7 +56,7 @@ public class OrderController {
     }
 
     @Operation(summary = "Get all orders delivered in a time of days for the application")
-    @RequestMapping("/getOrdersInDelivery/{days}")
+    @GetMapping("/getOrdersInDelivery/{days}")
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
     public List<Object> getOrdersInDelivery(@PathVariable int days) {
@@ -64,7 +64,7 @@ public class OrderController {
     }
 
     @Operation(summary = "Get all orders by state and year  for the application")
-    @RequestMapping("/getOrdersByStateAndYear/{state}/{year}")
+    @GetMapping("/getOrdersByStateAndYear/{state}/{year}")
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
     public List<OrderDTO> getOrdersByStateAndYear(@PathVariable String state, @PathVariable int year) {
@@ -72,7 +72,7 @@ public class OrderController {
     }
 
     @Operation(summary = "Get  orders by state and month  for the application")
-    @RequestMapping("/getOrdersByStateAndMonth/{state}/{month}")
+    @GetMapping("/getOrdersByStateAndMonth/{state}/{month}")
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
     public List<OrderDTO> getOrdersByStateAndMonth(@PathVariable String state, @PathVariable int month) {

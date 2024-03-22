@@ -26,7 +26,7 @@ public class ProductController {
     }
 
     @Operation(summary = "Get all Products for the application")
-    @RequestMapping("/all")
+    @GetMapping("/all")
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
     public List<ProductDTO> getAllProducts() {
@@ -34,7 +34,7 @@ public class ProductController {
     }
 
     @Operation(summary = "Get all Products by id for the application")
-    @RequestMapping("/findProductById/{productId}")
+    @GetMapping("/findProductById/{productId}")
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
     public ProductDTO getProductById(@PathVariable String productId) {
@@ -42,7 +42,7 @@ public class ProductController {
     }
 
     @Operation(summary = "Get all Products by gama and stock for the application")
-    @RequestMapping("/findProductByGamaAndStock/{rangeProductId}/{quantityInStock}")
+    @GetMapping("/findProductByGamaAndStock/{rangeProductId}/{quantityInStock}")
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
     public List<ProductDTO> getProductByGamaAndStock(@PathVariable String rangeProductId, @PathVariable short quantityInStock) {
@@ -50,7 +50,7 @@ public class ProductController {
     }
 
     @Operation(summary = "Get  Products without order for the application")
-    @RequestMapping("/findProductsWithoutOrder")
+    @GetMapping("/findProductsWithoutOrder")
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
     public List<ProductDTO> getProductsWithoutOrder() {
@@ -58,7 +58,7 @@ public class ProductController {
     }
 
     @Operation(summary = "Get  Products most expensive and cheapest for the application")
-    @RequestMapping("/expensive-cheap")
+    @GetMapping("/expensive-cheap")
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
     public List<ProductDTO> productoExpensiveAndCheap() {

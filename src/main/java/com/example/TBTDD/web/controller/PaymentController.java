@@ -27,7 +27,7 @@ public class PaymentController {
     }
 
     @Operation(summary = "Get all payments for the application")
-    @RequestMapping("/all")
+    @GetMapping("/all")
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
     public List<PaymentDTO> findAllPayments() {
@@ -35,14 +35,14 @@ public class PaymentController {
     }
 
     @Operation(summary = "Get all payments for id in the application")
-    @RequestMapping("/getPaymentById/{paymentId}")
+    @GetMapping("/getPaymentById/{paymentId}")
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
     public PaymentDTO getPaymentById(@PathVariable String paymentId) {
         return paymentService.getPaymentById(paymentId);
     }
     @Operation(summary = "Get all payments for type and year organized in the application")
-    @RequestMapping("/getPaymentsByTypeAndYearOrganized/{year}/{paymentType}")
+    @GetMapping("/getPaymentsByTypeAndYearOrganized/{year}/{paymentType}")
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
     public List<PaymentDTO> getPaymentsByTypeAndYearOrganized( @PathVariable int year,  @PathVariable String paymentType) {
@@ -50,7 +50,7 @@ public class PaymentController {
     }
 
     @Operation(summary = "Get all payments Methods for the application")
-    @RequestMapping("/getPaymentMethods")
+    @GetMapping("/getPaymentMethods")
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "bearerAuth")
     public List<Object> getPaymentMethods() {
