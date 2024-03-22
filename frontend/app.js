@@ -17,9 +17,26 @@ function showSuccessAlert(message) {
     });
 }
 
+function showSuccessAlert2(message) {
+    Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        text: message,
+        confirmButtonColor: '#green',
+        confirmButtonText: 'OK'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = 'index.html'; // Redirigir a la página de inicio de sesión
+        }
+    });
+    
+}
+
+
     // Change to register
 
 register.addEventListener("click", async (e) => {
+    console.log("cambio a registro");
     e.preventDefault();
     loginContainer.innerHTML = "";
     loginContainer.insertAdjacentHTML("beforeend", `
@@ -46,12 +63,10 @@ register.addEventListener("click", async (e) => {
             <p>Terms of use | Privacy policy</p>
         </div>
     `);
-});
+    let registroInformacion = document.querySelector('#registerForm');
+    console.log(registroInformacion.id);
 
-document.addEventListener("DOMContentLoaded", async () => {
 
-
-    //register a user and login
     let loginRegister = document.querySelector(".login-form");
     loginRegister.addEventListener("submit", async (e) => {
         e.preventDefault();
@@ -74,16 +89,21 @@ document.addEventListener("DOMContentLoaded", async () => {
                     body: JSON.stringify(data)
                 });
                 console.log(response);
-                showSuccessAlert('User registered successfully');
+                showSuccessAlert2('User registered successfully');
                 
             } catch (error) {
                 console.error(error);
                 showSuccessAlert('Error while registering user:' + error.message);
             }
         }
+    });
+});
 
-        // login a user
-
+document.addEventListener("DOMContentLoaded", async () => {
+    let loginRegister = document.querySelector(".login-form");
+    loginRegister.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const form = e.target;
         if (form.id === "loginForm") {
             const email = form.querySelector("input[type='email']").value;
             const password = form.querySelector("input[type='password']").value;
@@ -110,9 +130,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                 showSuccessAlert('Error logging in user');
             }
         }
-        
+    })
 
-    });
+    
+    
 
 
 });
