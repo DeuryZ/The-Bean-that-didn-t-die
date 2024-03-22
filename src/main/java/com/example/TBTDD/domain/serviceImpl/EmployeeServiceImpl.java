@@ -1,5 +1,6 @@
 package com.example.TBTDD.domain.serviceImpl;
 
+import com.example.TBTDD.domain.exception.NotContentResource;
 import com.example.TBTDD.domain.repository.EmployeeRepository;
 import com.example.TBTDD.domain.service.EmployeeService;
 import com.example.TBTDD.persistence.DTO.EmployeeDTO;
@@ -85,6 +86,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<EmployeeDTO> findAllEmployeesWithoutOffice() {
         List<Employee> employees = employeeRepository.findAllEmployeesWithoutOffice();
+        if(employees == null ||employees.isEmpty()){
+            throw new NotContentResource("Not found employees without office");
+        }
+
         List<EmployeeDTO> employeeDTOS = new ArrayList<>();
         employees.forEach(
                 employee -> employeeDTOS.add(EmployeeDTO.toDTO(employee))

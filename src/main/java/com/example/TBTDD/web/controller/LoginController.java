@@ -1,5 +1,6 @@
 package com.example.TBTDD.web.controller;
 
+import com.example.TBTDD.domain.exception.GlobalExceptionHandler;
 import com.example.TBTDD.domain.repository.AdminRepository;
 import com.example.TBTDD.domain.security.JWTAuthtenticationConfig;
 import com.example.TBTDD.persistence.entity.Admin;
@@ -22,6 +23,9 @@ public class LoginController {
 
     @Autowired
     private AdminRepository adminRepository;
+
+    @Autowired
+    private GlobalExceptionHandler globalExceptionHandler;
 
     @Operation(summary = "Login For the application")
     @CrossOrigin(origins = "http://127.0.0.1:5500")
