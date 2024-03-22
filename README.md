@@ -378,75 +378,136 @@ Recording after used the endPoint use: http://localhost:8080
 ### Range Resources 
 
 `/rangeProduct/getRangeProductById/{rangeProductId}`
+
 `/rangeProduct/getRangeProductById/{rangeProductId}`
+
 `/rangeProduct/getRangeProductById/{rangeProductId}`
+
 ### Payment Resources 
 `/payments/total-by-year`
+
 `/payments/average-payment-2009`
+
 `/payments/getPaymentsByTypeAndYearOrganized/{year}/{paymentType}`
+
 `/payments/getPaymentMethods`
+
 `/payments/getPaymentById/{paymentId}`
+
 `/payments/all`
+
 ### Order Resources 
 
 `/orders/sum-total-quantity-by-order`
+
 `/orders/first-last-dates-by-client`
+
 `/orders/amount-by-state`
+
 `/orders/getStates`
+
 `/orders/getOrdersInDelivery/{days}`
+
 `/orders/getOrdersDeliveredAfterExpected`
+
 `/orders/getOrdersByStateAndYear/{state}/{year}`
+
 `/orders/getOrdersByStateAndMonth/{state}/{month}`
+
 `/orders/findOrderById/{orderId}`
+
 `/orders/all`
 
+
 ### OrderDetail Resources 
+
 `/orderDetail/vents-greater-than-3000`
+
 `/orderDetail/calculate`
+
 `/orderDetail/billing-by-product`
+
 `/orderDetail/billing-by-productWithOR`
+
 `/orderDetail/best-selling`
+
 ### Employee Resources 
 `/employees/total`
+
 `/employees/getEmployeeInfoByReportsTo/{reportsTo}`
+
 `/employees/getEmployeeById/{employeeId}`
+
 `/employees/findDifferentByJobTitle/{jobTitle}`
+
 `/employees/findBossCompany`
+
 `/employees/findAllEmployeesWithoutOffice`
+
 `/employees/findAllEmployeesWithoutClients`
+
 `/employees/findAllEmployeesWithoutClientsOrOffice`
+
 `/employees/findAllEmployeesWithBoss`
+
 `/employees/findAllEmployeesWithBossAndBoss`
+
 `/employees/clients-per-employee`
+
 `/employees/all`
+
 ### Clients Resources 
 `/clients/without-sales-representative`
+
 `/clients/findClientsWithoutPayment`
+
 `/clients/findClientsWithoutOrder`
+
 `/clients/findClientsWithoutOrderOrWithoutPayment`
+
 `/clients/findClientsWithPendingOrdersLaterThanExpected`
+
 `/clients/findClientsWithPaymentInAYear/{year}`
+
 `/clients/findClientsByCountry/{country}`
+
 `/clients/findClientsByCityAndSalesRep/{city}/{salesRepEmployeeId1}/{salesRepEmployeeId2}`
+
 `/clients/findClientById/{clientId}`
+
 `/clients/findAllClientsWithSalesRep`
+
 `/clients/findAllClientsWithSalesRepWithoutPayment`
+
 `/clients/findAllClientsWithSalesRepIfPayment`
+
 `/clients/findAllClientsWithSalesRepAndOffice`
+
 `/clients/findAllClientsWithSalesRepAndOfficeWithoutPayment`
+
 `/clients/findAllClientsWithSalesRepAndOfficeIfPayment`
+
 `/clients/count`
+
 `/clients/count-in-madrid`
+
 `/clients/count-by-country`
+
 `/clients/all`
+
 
 ### Product Resources 
 
 `/product/findProductsWithoutOrder`
+
 `/product/findProductById/{productId}`
+
 `/product/findProductByGamaAndStock/{rangeProductId}/{quantityInStock}`
+
 `/product/expensive-cheap`
+
 `/product/all`
+
 
 ---
 
