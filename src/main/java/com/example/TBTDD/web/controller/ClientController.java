@@ -50,18 +50,16 @@ public class ClientController {
     public ResponseEntity<?> getClientById(@PathVariable String clientId) {
         try {
             // Validar que el clientId no esté vacío
-            if (clientId == null || clientId.isEmpty()) {
-                throw new InvalidClientIdException("Invalid ID");
-            }
+            Integer clId = Integer.parseInt(clientId);
 
             // Llamar al servicio para obtener el cliente
             ClientDTO clientDTO = clientService.getClientById(clientId);
 
             // Retornar la respuesta exitosa
             return ResponseEntity.ok(clientDTO);
-        } catch (InvalidClientIdException e) {
+        } catch (NumberFormatException e) {
             // Capturar la excepción de ID de cliente inválido y devolver un mensaje personalizado
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
+            throw new InvalidClientIdException(e.getMessage());
         } catch (Exception e) {
             // Capturar otras excepciones y devolver un mensaje genérico de error del servidor
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Internal server error", e);

@@ -14,6 +14,14 @@ import org.springframework.web.context.request.WebRequest;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+    @ExceptionHandler(NotContentResource.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity<Object> handleNotContentResource(NotContentResource ex) {
+        ErrorResponses errorResponse = new ErrorResponses("Not found content in database", ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+
     @ExceptionHandler(InvalidClientIdException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<Object> handleInvalidClientIdException(InvalidClientIdException ex) {
